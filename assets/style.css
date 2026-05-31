@@ -21,17 +21,19 @@ body {
   font-size: 15px;
   line-height: 1.7;
   color: #1a1a1a;
-  background: #fafaf7;
+  background-color: #fafaf7;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0.025 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 :root {
   --text-primary: #1a1a1a;
-  --text-secondary: #6b6b66;
-  --text-tertiary: #a8a8a2;
+  --text-secondary: #5a5a55;
+  --text-tertiary: #8e8e87;
   --bg-primary: #fafaf7;
   --bg-elevated: #ffffff;
   --border: rgba(26, 26, 26, 0.08);
   --border-strong: rgba(26, 26, 26, 0.16);
+  --accent: #2d5a3d;
   --serif: 'Fraunces', 'Noto Serif SC', Georgia, serif;
   --sans: 'Inter', 'Noto Serif SC', -apple-system, sans-serif;
   --container: 880px;
@@ -49,15 +51,17 @@ body {
   padding: 32px 0;
   position: sticky;
   top: 0;
-  background: rgba(250, 250, 247, 0.85);
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  background: transparent;
   z-index: 100;
   border-bottom: 0.5px solid transparent;
-  transition: border-color 0.3s;
+  transition: background 0.3s, border-color 0.3s;
 }
 
-.nav.scrolled { border-bottom-color: var(--border); }
+.nav.scrolled {
+  background-color: #fafaf7;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0 0.1, 0 0 0 0.025 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  border-bottom-color: var(--border);
+}
 
 .nav-inner {
   display: flex;
@@ -66,43 +70,186 @@ body {
 }
 
 .nav-logo {
+  display: inline-flex;
+  align-items: baseline;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-logo-en {
   font-family: var(--serif);
   font-size: 17px;
   font-weight: 400;
   letter-spacing: -0.01em;
   color: var(--text-primary);
-  text-decoration: none;
 }
 
-.nav-links {
-  display: flex;
-  gap: 36px;
-  list-style: none;
+/* === Theme accent: green dot and dash === */
+.accent-dot,
+.accent-dash {
+  color: var(--accent);
 }
 
-.nav-links a {
-  font-size: 13px;
-  color: var(--text-secondary);
-  text-decoration: none;
+.nav-logo-zh {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
   letter-spacing: 0.01em;
-  transition: color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0;
+  transition:
+    max-width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.35s ease 0.1s,
+    margin-left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-logo:hover .nav-logo-zh {
+  max-width: 200px;
+  opacity: 1;
+  margin-left: 12px;
+}
+
+/* Mobile: keep logo minimal, no Chinese reveal on touch devices */
+@media (hover: none) {
+  .nav-logo-zh {
+    display: none;
+  }
+}
+
+/* === Menu icon === */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  margin-right: -8px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
   position: relative;
+  z-index: 110; /* above overlay */
 }
 
-.nav-links a:hover { color: var(--text-primary); }
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.3s ease;
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 0.5px;
+  background: var(--text-primary);
+  transition: all 0.3s ease;
 }
 
-.nav-links a:hover::after { width: 100%; }
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+/* === Floating menu overlay === */
+.menu-overlay {
+  position: fixed;
+  top: 80px;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  background: rgba(250, 250, 247, 0.82);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border: 0.5px solid rgba(26, 26, 26, 0.06);
+  border-radius: 18px;
+  z-index: 105;
+  box-shadow:
+    0 1px 1px rgba(26, 26, 26, 0.02),
+    0 8px 24px rgba(26, 26, 26, 0.04);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0.35s;
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0s;
+}
+
+.menu-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 24px 28px;
+}
+
+.menu-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 28px 56px;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 16px 4px;
+  border-bottom: 0.5px solid rgba(26, 26, 26, 0.08);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: padding 0.3s ease;
+}
+
+.menu-item:last-child {
+  border-bottom: 0;
+}
+
+.menu-item:hover {
+  padding-left: 12px;
+}
+
+.menu-zh {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.menu-en {
+  font-family: var(--serif);
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  position: relative;
+  top: -2px;
+}
 
 /* === Hero === */
 .hero {
@@ -241,13 +388,13 @@ body {
 
 .section-intro {
   font-family: var(--serif);
-  font-size: 18px;
-  font-style: italic;
+  font-size: 15px;
   font-weight: 300;
   color: var(--text-secondary);
   max-width: 420px;
   text-align: right;
-  line-height: 1.5;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
 }
 
 /* === Work === */
@@ -257,7 +404,7 @@ body {
   padding: 40px 0;
   border-top: 0.5px solid var(--border);
   display: grid;
-  grid-template-columns: 120px 1fr 220px 24px;
+  grid-template-columns: 120px 1fr 180px 24px;
   gap: 32px;
   align-items: center;
   text-decoration: none;
@@ -432,6 +579,64 @@ body {
   color: #2d5a3d;
 }
 
+/* === Design Philosophy === */
+.philosophy {
+  padding: 16px 0 64px;
+  margin-bottom: 64px;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.philosophy-label {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.philosophy-label::before {
+  content: '';
+  width: 24px;
+  height: 0.5px;
+  background: var(--text-tertiary);
+}
+
+.philosophy-keyword {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5vw, 56px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 48px;
+  line-height: 1;
+}
+
+.philosophy-process {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 520px;
+}
+
+.process-line {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
+}
+
+.process-line.last {
+  font-style: italic;
+  font-weight: 400;
+  color: #2d5a3d;
+  margin-top: 8px;
+}
+
 /* === About === */
 .about-grid {
   display: grid;
@@ -484,6 +689,12 @@ body {
 .skills-text strong {
   font-weight: 500;
   color: var(--text-primary);
+}
+
+.skills-learning {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.01em;
 }
 
 .skills-divider {
@@ -632,7 +843,15 @@ body {
     gap: 56px;
   }
 
-  .nav-links { gap: 24px; }
+  .menu-overlay {
+    top: 72px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border-radius: 14px;
+  }
+
+  .menu-zh { font-size: 20px; }
 
   .latest { flex-wrap: wrap; }
   .latest-label { border-right: none; padding-right: 0; }

@@ -7,19 +7,48 @@
   <meta name="description" content="9年产品设计经验，专注 B2B 可观测性领域。在技术数据与人类决策之间，设计那层翻译。">
   <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body id="top">
 
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <div class="container nav-inner">
-      <a href="index.html" class="nav-logo">叶潇蓉 · Cherry Ye</a>
-      <ul class="nav-links">
-        <li><a href="#work">作品集</a></li>
-        <li><a href="#writing">文章</a></li>
-        <li><a href="#about">关于</a></li>
-      </ul>
+      <a href="#top" class="nav-logo">
+        <span class="nav-logo-en">intentional<span class="accent-dot">.</span></span>
+        <span class="nav-logo-zh">充满意向的设计</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Floating menu overlay -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <span class="menu-label">导航 / Menu</span>
+
+    <div class="menu-center">
+      <div class="menu-items">
+        <a href="#top" class="menu-item">
+          <span class="menu-zh">首页</span>
+          <span class="menu-en">Home</span>
+        </a>
+        <a href="#work" class="menu-item">
+          <span class="menu-zh">作品</span>
+          <span class="menu-en">Work</span>
+        </a>
+        <a href="#writing" class="menu-item">
+          <span class="menu-zh">文章</span>
+          <span class="menu-en">Writing</span>
+        </a>
+        <a href="#about" class="menu-item">
+          <span class="menu-zh">关于</span>
+          <span class="menu-en">About</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Hero -->
   <header class="hero">
@@ -39,10 +68,9 @@
         <span class="tag">B2B 可观测性</span>
         <span class="tag">Agentic UX</span>
         <span class="tag">AI-Native 产品</span>
-        <span class="tag">信息架构</span>
       </div>
 
-      <a href="#writing" class="latest reveal">
+      <a href="writing/three-judgments.html" class="latest reveal">
         <span class="latest-label">最新文章</span>
         <span class="latest-title">复杂的 Obs 产品：三个体验设计判断</span>
         <span class="latest-arrow">→</span>
@@ -55,7 +83,7 @@
     <div class="container">
       <div class="section-header">
         <p class="section-label">作品集 / Selected Work</p>
-        <p class="section-intro">每个项目背后，都有一个可以说清楚的理由。</p>
+        <p class="section-intro">一个根项目，<br>两个延伸方向。</p>
       </div>
 
       <div class="work-list">
@@ -68,7 +96,8 @@
           <div class="work-content">
             <h3 class="work-title">Sunfire · 全链路可观测性平台</h3>
             <p class="work-desc">
-              37 个租户、近 20,000+ 应用、跨业务线多角色——这是一个复杂度本身就是核心挑战的平台。独立承担全量设计，从顶层信息架构到各模块交互，核心工作是持续判断：哪些复杂度由系统承担，哪些必须暴露给用户。
+              37 租户、近 20,000+ 应用、跨业务线多角色的复杂系统。<br>
+              独立承担全量设计，从信息架构到模块交互。
             </p>
           </div>
           <div class="work-thumb">
@@ -86,7 +115,9 @@
           <div class="work-content">
             <h3 class="work-title">Trace for AI · AI 应用可观测性</h3>
             <p class="work-desc">
-              传统 Trace 工具面对 AI 应用有一个结构性盲区：用户看到的是对话，后台记录的是 Span，两层之间没有通路。重新定义排查范式——从技术层往上翻，转变为从语义层往下穿。
+              为 AI 应用重新定义可观测性排查范式——<br>
+              打通对话语义层与 Span 技术层。<br>
+              已上线，Loop view 部分在另一平台落地。
             </p>
           </div>
           <div class="work-thumb">
@@ -102,9 +133,10 @@
             <span class="work-status">进行中</span>
           </div>
           <div class="work-content">
-            <h3 class="work-title">SRE Agent · AI 运维助手</h3>
+            <h3 class="work-title">SRE Agent · <span class="title-line2">AI 运维助手</span></h3>
             <p class="work-desc">
-              基于可观测数据的对话式运维助手。核心设计挑战不是界面，而是信任——故障场景下，AI 的结论如何让工程师敢用、能验、可接管。
+              基于可观测数据的对话式运维助手。<br>
+              重点设计 AI 结论与行动路径的可信表达。
             </p>
           </div>
           <div class="work-thumb">
@@ -123,8 +155,8 @@
     <div class="transition reveal">
       <div class="transition-mark"></div>
       <p class="transition-text">
-        作品展示的是结论，<br>
-        而每个结论都有它的判断过程——
+        页面展示的是结论，<br>
+        而每个细节都有它的意图<span class="accent-dash">——</span>
       </p>
       <span class="transition-arrow">↓</span>
     </div>
@@ -135,7 +167,7 @@
     <div class="container">
       <div class="section-header">
         <p class="section-label">设计文章 / Writing</p>
-        <p class="section-intro">设计判断应该有据可查。<br>这里记录我在做决策时真正想清楚的那些事。</p>
+        <p class="section-intro">那些值得反复想的问题。</p>
       </div>
 
       <div class="writing-list">
@@ -175,6 +207,18 @@
         <p class="section-label">关于 / About</p>
       </div>
 
+      <!-- Design Philosophy -->
+      <div class="philosophy reveal">
+        <p class="philosophy-label">Design Philosophy · 设计立场</p>
+        <h2 class="philosophy-keyword">intentional<span class="accent-dot">.</span></h2>
+        <div class="philosophy-process">
+          <p class="process-line">全面了解，</p>
+          <p class="process-line">穿透问题本质，</p>
+          <p class="process-line">充分发散，</p>
+          <p class="process-line last">充满意象的设计。</p>
+        </div>
+      </div>
+
       <div class="about-grid">
 
         <div class="about-block">
@@ -182,7 +226,7 @@
 
           <div class="exp-item">
             <p class="exp-role">阿里巴巴 · 驻场产品设计师</p>
-            <p class="exp-meta">2021 — 至今<br>Sunfire 平台设计 Owner · 独立负责全量设计</p>
+            <p class="exp-meta">2021 — 至今<br>Sunfire 平台设计 Owner，独立负责全量设计；<br>同时主导 Trace for AI、SRE Agent 等 AI 方向产品设计。</p>
           </div>
 
           <div class="exp-item">
@@ -210,12 +254,14 @@
           <div class="skills-divider"></div>
           <p class="skills-text">
             <strong>AI 工作流</strong><br>
-            研究加速 · 方案参考生成 · 设计评审辅助
+            研究加速 · 方案参考生成 · 设计评审辅助<br>
+            <span class="skills-learning">学习中：Anthropic Claude 101 · AI Fluency</span>
           </p>
           <div class="skills-divider"></div>
-          <p class="edu-text">
+          <p class="skills-text">
+            <strong>教育与认证</strong><br>
             浙江科技学院 · 视觉传达设计 · 2016<br>
-            Apple Authorized Training · Innovation & Product Management · 2021
+            Apple Authorized Training · Innovation & PM · 2021
           </p>
         </div>
 
@@ -245,6 +291,46 @@
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 8);
+    });
+
+    // Menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      menuOverlay.classList.add('open');
+      menuToggle.classList.add('active');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove('open');
+      menuToggle.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', () => {
+      if (menuOverlay.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+
+    // Close menu when a menu item is clicked
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', () => {
+        // Wait a tick for the anchor navigation, then close
+        setTimeout(closeMenu, 100);
+      });
+    });
+
+    // Close menu with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('open')) {
+        closeMenu();
+      }
     });
 
     // Reveal animation
