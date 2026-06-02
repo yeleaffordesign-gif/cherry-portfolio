@@ -797,6 +797,347 @@ body {
   border-top: 0;
 }
 
+/* ============================================
+   Article Page (文章详情页)
+   ============================================ */
+
+.article-body {
+  /* 文章页背景与首页完全一致 */
+}
+
+.article {
+  padding: 56px 0 120px;
+}
+
+.article-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* === Article Meta === */
+.article-meta {
+  margin-bottom: 32px;
+}
+
+.article-category {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* === Title === */
+.article-title {
+  font-family: var(--serif);
+  font-size: clamp(34px, 5vw, 48px);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+}
+
+.article-title-sub {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-secondary);
+  display: block;
+  margin-top: 4px;
+  font-size: 0.7em;
+  letter-spacing: -0.015em;
+}
+
+/* === Lead === */
+.article-lead {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  letter-spacing: -0.005em;
+}
+
+/* === Byline === */
+.article-byline {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+  padding-bottom: 56px;
+  border-bottom: 0.5px solid var(--border);
+  margin-bottom: 64px;
+}
+
+.byline-author {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
+}
+
+.byline-sep {
+  color: var(--text-tertiary);
+}
+
+.byline-date {
+  font-size: 13px;
+}
+
+/* === Byline at end of article === */
+.article-byline-end {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-top: 56px;
+  justify-content: flex-start;
+}
+
+.article-byline-end .byline-author {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.article-byline-end .byline-date {
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+/* === Body content === */
+.article-body-content {
+  font-family: 'Noto Serif SC', 'Fraunces', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.95;
+  color: var(--text-primary);
+  letter-spacing: 0.005em;
+}
+
+.article-body-content p {
+  margin-bottom: 28px;
+}
+
+.article-body-content p strong {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* === Judgment headers (01 / 02 / 03) === */
+.judgment {
+  margin: 80px 0 40px;
+  padding-top: 24px;
+}
+
+.judgment-number {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.judgment-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* === Callout (左侧暗绿色竖线引用块) === */
+.article-callout {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-primary);
+  border-left: 2px solid var(--accent);
+  padding: 8px 0 8px 24px;
+  margin: 40px 0 40px;
+  font-style: normal;
+  letter-spacing: -0.005em;
+}
+
+/* === Closing === */
+.article-closing {
+  margin-top: 96px;
+  padding-top: 56px;
+  border-top: 0.5px solid var(--border);
+}
+
+.closing-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 0 0 28px;
+  letter-spacing: -0.005em;
+}
+
+.article-emphasis {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-primary);
+  border-left: 2px solid var(--accent);
+  padding: 8px 0 8px 24px;
+  margin: 36px 0;
+  letter-spacing: -0.005em;
+}
+
+/* === Article End mark === */
+.article-end {
+  margin: 80px 0 56px;
+  text-align: center;
+}
+
+.end-mark {
+  font-family: var(--serif);
+  font-size: 24px;
+  color: var(--accent);
+}
+
+/* === Back link === */
+.article-back {
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  padding: 12px 24px;
+  border: 0.5px solid var(--border-strong);
+  border-radius: 100px;
+  transition: all 0.25s;
+}
+
+.back-link:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  transform: translateX(-2px);
+}
+
+.back-arrow {
+  font-family: var(--serif);
+  font-size: 15px;
+  transition: transform 0.25s;
+}
+
+.back-link:hover .back-arrow {
+  transform: translateX(-3px);
+}
+
+/* === Article TOC (floating right anchor nav) === */
+.article-toc {
+  position: fixed;
+  top: 50%;
+  right: max(32px, calc((100vw - 680px) / 2 - 200px));
+  transform: translateY(-50%);
+  z-index: 50;
+  pointer-events: auto;
+}
+
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.toc-list li {
+  list-style: none;
+}
+
+.toc-link {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 4px;
+  text-decoration: none;
+  font-size: 12px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+  transition: all 0.25s;
+  position: relative;
+}
+
+.toc-num {
+  font-family: var(--serif);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  min-width: 18px;
+  transition: color 0.25s;
+}
+
+.toc-text {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  transition: color 0.25s;
+}
+
+.toc-link:hover {
+  padding-left: 12px;
+}
+
+.toc-link:hover .toc-text,
+.toc-link:hover .toc-num {
+  color: var(--text-primary);
+}
+
+.toc-link.active .toc-num {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.toc-link.active .toc-text {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Hide TOC on narrower viewports where there's no room */
+@media (max-width: 1100px) {
+  .article-toc {
+    display: none;
+  }
+}
+
+/* === Article responsive === */
+@media (max-width: 720px) {
+  .article { padding: 32px 0 80px; }
+  .article-container { padding: 0 24px; }
+  .article-title { font-size: 28px; }
+  .article-lead { font-size: 17px; }
+  .article-body-content { font-size: 16px; line-height: 1.9; }
+  .judgment { margin: 56px 0 32px; }
+  .judgment-title { font-size: 22px; }
+  .article-callout, .article-emphasis { font-size: 17px; padding-left: 20px; }
+  .article-closing { margin-top: 64px; padding-top: 40px; }
+}
+
 /* === Reveal === */
 .reveal {
   opacity: 0;

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>复杂的 Obs 产品：三个体验设计判断 · Cherry Ye</title>
+  <meta name="description" content="复杂产品的体验问题，本质上要解决复杂度的分配问题——哪些由系统承担，哪些暴露给用户。">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body id="top" class="article-body">
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="../index.html#top" class="nav-logo">
+        <span class="nav-logo-en">intentional<span class="accent-dot">.</span></span>
+        <span class="nav-logo-zh">充满意向的设计</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Floating menu overlay -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <span class="menu-label">导航 / Menu</span>
+
+    <div class="menu-center">
+      <div class="menu-items">
+        <a href="../index.html#top" class="menu-item">
+          <span class="menu-zh">首页</span>
+          <span class="menu-en">Home</span>
+        </a>
+        <a href="../index.html#work" class="menu-item">
+          <span class="menu-zh">作品</span>
+          <span class="menu-en">Work</span>
+        </a>
+        <a href="../index.html#writing" class="menu-item">
+          <span class="menu-zh">文章</span>
+          <span class="menu-en">Writing</span>
+        </a>
+        <a href="../index.html#about" class="menu-item">
+          <span class="menu-zh">关于</span>
+          <span class="menu-en">About</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article TOC (floating right) -->
+  <aside class="article-toc" id="articleToc" aria-label="文章导航">
+    <ul class="toc-list">
+      <li><a href="#judgment-1" class="toc-link" data-target="judgment-1"><span class="toc-num">01</span><span class="toc-text">入口的组织方式</span></a></li>
+      <li><a href="#judgment-2" class="toc-link" data-target="judgment-2"><span class="toc-num">02</span><span class="toc-text">关注的本质</span></a></li>
+      <li><a href="#judgment-3" class="toc-link" data-target="judgment-3"><span class="toc-num">03</span><span class="toc-text">配置流程的依据</span></a></li>
+      <li><a href="#closing" class="toc-link" data-target="closing"><span class="toc-num">—</span><span class="toc-text">尾注</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- Article -->
+  <article class="article">
+    <div class="article-container">
+
+      <!-- Article Meta -->
+      <div class="article-meta">
+        <span class="article-category">设计判断 · Design Notes</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="article-title">
+        复杂的 Obs 产品<br>
+        <span class="article-title-sub">三个体验设计判断</span>
+      </h1>
+
+      <!-- Lead paragraph (新版开篇导语) -->
+      <p class="article-lead">
+        可观测性平台的设计，功能完整和可用性之间天然存在张力。模块多、角色多、场景多——每增加一个能力，就增加一分需要被消化的复杂度。
+      </p>
+
+      <!-- Body -->
+      <div class="article-body-content">
+
+        <!-- Judgment 1 -->
+        <div class="judgment" id="judgment-1">
+          <div class="judgment-number">01</div>
+          <h2 class="judgment-title">入口的组织方式，从领域事实推导</h2>
+        </div>
+
+        <p>以某企业级可观测平台为例，服务两类核心角色——应用开发工程师和运维/SRE，同时横跨业务差异极大的多个租户。</p>
+
+        <p>面对这个现实，有几种路径：做两套产品、用权限区分功能、或者用统一界面让两类用户自己适应。但在做这个选择之前，有三个领域事实需要先想清楚。</p>
+
+        <p><strong>应用视角天然存在</strong>：可观测性数据的采集标准（OpenTelemetry）天然以应用为基本单元，链路追踪的起点、指标的归属、日志的来源都以应用为索引对象。更重要的是，使用这个平台的用户绝大多数是应用 owner，他们天然为应用的健康状态负责。数据的组织方式和用户的职责边界高度吻合，这个视角不是设计出来的，它本来就在那里。</p>
+
+        <p><strong>业务视角必须存在</strong>：租户隔离是硬约束，每个租户内部又有各自的业务线，不同业务线有自己的观测对象、指标定义和告警规则，且业务必然涉及多应用的数据，应用视角完全无法承接。负责业务的 SRE 关注的是自己负责的业务线是否出现异常，而不是某个应用是否有问题。因此业务视角必须存在。</p>
+
+        <p><strong>个人视角必须存在</strong>：一个用户通常需要横跨多个视角工作。以应用 owner 为例，他负责的应用一旦影响到业务，问题会升级，他需要为此担责，这意味着他必须同时关注应用状态和业务影响。加上平台数据量极大，从两个大视角里找数据极其困难，个人视角将这些关系聚合为一个入口，帮助用户快速到达目标，也让他随时掌握自己负责资产的状态。</p>
+
+        <p>三个视角各自对应一个无法被统一产品形态消解的领域事实。</p>
+
+        <!-- Judgment 2 -->
+        <div class="judgment" id="judgment-2">
+          <div class="judgment-number">02</div>
+          <h2 class="judgment-title">「关注」的本质，先判断，再设计</h2>
+        </div>
+
+        <p>个人视角落地为首页，首页聚合三类信息：用户主动管理的、系统帮用户记录的、平台需要告知用户的——构成个人视角的完整信息闭环。其中关注模块是核心。</p>
+
+        <p>有一个容易走错的方向：用行为频率推断关注内容。这在内容消费类产品里是合理的，但在可观测性平台里会有结构性遗漏——用户负责的对象可能平时运行正常、很少主动查看，出问题时却必须第一时间响应。行为推断会系统性地漏掉这类「低频但高责任」的对象。</p>
+
+        <p>落到具体设计，个人关注模块可以采用资产类型 × 用户关系的二维结构组织内容，优先级最高的告警类内容置顶。</p>
+
+        <p>可观测性产品里，「关注」的本质不是兴趣偏好，而是责任归属。关注内容必须由用户主动「声明」。</p>
+
+        <!-- Judgment 3 -->
+        <div class="judgment" id="judgment-3">
+          <div class="judgment-number">03</div>
+          <h2 class="judgment-title">配置流程从用户操作路径出发，不是从系统实现逻辑出发</h2>
+        </div>
+
+        <p>配置类功能有一个常见问题：系统内部的实现逻辑会以各种形式渗透到用户侧。入口分类按系统实现而非用户任务来组织，本可以归一的操作因为缺乏共性识别而分散在多处——用户被迫承担本不属于他们的认知负担。</p>
+
+        <p>需要先回到用户在完成这类任务时的真实路径：他实际的步骤是什么，哪些判断是他需要做的，哪些是系统应该消化掉的。围绕这些问题，类型收敛、操作归一、流程解耦——形式不同，本质都是把系统的复杂度从用户侧移走。</p>
+
+        <p>还有一个容易被忽视的层面：操作收敛做到了，但页面观感仍然复杂。能合并的区域没有合并、结构层次不清晰，用户一进来就觉得难用。操作和结构是两件事，都到位，配置体验才算完整。</p>
+
+        <!-- 尾注 -->
+        <div class="article-closing" id="closing">
+          <h2 class="closing-title">尾注</h2>
+
+          <p>这三个判断处理的问题不在同一个层面。</p>
+
+          <p>入口怎么组织，是信息结构的问题。用户角色不同，使用场景不同；资源类型不同，可被查看和管理的维度也不同；不同场景下，用户需要的视角也不一样——再叠上租户带来的权限约束。这些维度同时存在，需要先搞清楚用户在实际场景里和这些信息的关系是什么，组织方式才能从这里推导出来。配置流程怎么做，是从用户实际操作路径出发收敛的问题，背后也涉及复杂度的归属。「关注」的设计是另一类：不是分配或收敛，而是概念定义——关注的本质是什么，想清楚之前，实现方式都是在走捷径。</p>
+        </div>
+
+      </div>
+
+
+      <!-- Byline (放在文末) -->
+      <div class="article-byline article-byline-end">
+        <span class="byline-author">Cherry</span>
+        <span class="byline-sep">·</span>
+        <span class="byline-date">2026 年 5 月</span>
+      </div>
+
+      <!-- Article End -->
+      <div class="article-end">
+        <span class="end-mark">·</span>
+      </div>
+
+      <!-- Back to homepage -->
+      <div class="article-back">
+        <a href="../index.html#writing" class="back-link">
+          <span class="back-arrow">←</span>
+          <span>返回首页</span>
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+  <script>
+    // Sticky nav border
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 8);
+    });
+
+    // Menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      menuOverlay.classList.add('open');
+      menuToggle.classList.add('active');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove('open');
+      menuToggle.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', () => {
+      if (menuOverlay.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', () => {
+        setTimeout(closeMenu, 100);
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    // Article TOC scroll spy
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const sections = ['judgment-1', 'judgment-2', 'judgment-3', 'closing']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    function updateActiveSection() {
+      // Find the section closest to (but past) the top of the viewport
+      const scrollPos = window.scrollY + window.innerHeight * 0.3;
+      let activeId = null;
+
+      sections.forEach(section => {
+        if (section.offsetTop <= scrollPos) {
+          activeId = section.id;
+        }
+      });
+
+      tocLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === activeId);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    updateActiveSection();
+  </script>
+
+</body>
+</html>
