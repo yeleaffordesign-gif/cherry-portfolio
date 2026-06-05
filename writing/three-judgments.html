@@ -7,7 +7,7 @@
   <meta name="description" content="复杂产品的体验问题，本质上要解决复杂度的分配问题——哪些由系统承担，哪些暴露给用户。">
   <link rel="stylesheet" href="../assets/style.css">
 </head>
-<body id="top" class="article-body">
+<body id="top" class="article-body" data-progress="true">
 
   <!-- Navigation -->
   <nav class="nav" id="nav">
@@ -162,13 +162,8 @@
     </div>
   </article>
 
+  <script src="../assets/nav.js"></script>
   <script>
-    // Sticky nav border
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 8);
-    });
-
     // Menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const menuOverlay = document.getElementById('menuOverlay');
