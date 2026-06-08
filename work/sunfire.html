@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunfire · 企业级监控平台 · Cherry Ye</title>
+  <meta name="description" content="Sunfire 是一个企业级监控平台，与 Datadog 同类型。本文记录我在这个平台上的几个核心设计判断。">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body id="top" class="article-body" data-progress="true">
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="../index.html#top" class="nav-logo">
+        <span class="nav-logo-en">intentional<span class="accent-dot">.</span></span>
+        <span class="nav-logo-zh">充满意向的设计</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Floating menu overlay -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <span class="menu-label">导航 / Menu</span>
+    <div class="menu-center">
+      <div class="menu-items">
+        <a href="../index.html#top" class="menu-item">
+          <span class="menu-zh">首页</span>
+          <span class="menu-en">Home</span>
+        </a>
+        <a href="../index.html#work" class="menu-item">
+          <span class="menu-zh">作品</span>
+          <span class="menu-en">Work</span>
+        </a>
+        <a href="../index.html#writing" class="menu-item">
+          <span class="menu-zh">文章</span>
+          <span class="menu-en">Writing</span>
+        </a>
+        <a href="../index.html#about" class="menu-item">
+          <span class="menu-zh">关于</span>
+          <span class="menu-en">About</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right side TOC -->
+  <aside class="article-toc work-toc" id="articleToc" aria-label="项目章节导航">
+    <ul class="toc-list">
+      <li><a href="#chapter-1" class="toc-link" data-target="chapter-1"><span class="toc-num">01</span><span class="toc-text">平台</span></a></li>
+      <li><a href="#chapter-2" class="toc-link" data-target="chapter-2"><span class="toc-num">02</span><span class="toc-text">「我的」工作台</span></a></li>
+      <li><a href="#chapter-3" class="toc-link" data-target="chapter-3"><span class="toc-num">03</span><span class="toc-text">Monitor 重构</span></a></li>
+      <li><a href="#chapter-4" class="toc-link" data-target="chapter-4"><span class="toc-num">04</span><span class="toc-text">组件统一</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- Article -->
+  <article class="article work-detail">
+    <div class="article-container">
+
+      <!-- Project Meta -->
+      <div class="article-meta work-meta-row">
+        <span class="article-category">B2B Observability · 作品</span>
+        <span class="meta-divider">·</span>
+        <span class="meta-status">长期迭代</span>
+        <span class="meta-divider">·</span>
+        <span class="meta-time">2021 — 至今</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="article-title">
+        Sunfire<br>
+        <span class="article-title-sub">企业级监控平台</span>
+      </h1>
+
+      <!-- Lead -->
+      <p class="article-lead">
+        37 租户、近 20,000+ 应用、跨业务线多角色——<br>
+        在长期演进的复杂平台里，如何分配复杂度。
+      </p>
+
+      <!-- Body -->
+      <div class="article-body-content">
+
+        <!-- Chapter 01 · 平台 -->
+        <div class="judgment" id="chapter-1">
+          <div class="judgment-number">01</div>
+          <h2 class="judgment-title">平台</h2>
+        </div>
+
+        <p>Sunfire 是一个企业级监控平台，与 Datadog 同类型。覆盖 Monitor、APM、指标 Explore、Trace、拓扑、日志、大盘、Event、Problems 等核心模块。</p>
+
+        <p class="aside">服务 37 个租户，近 20,000+ 应用。租户横跨业务差异极大的产品线，用户角色包含应用开发工程师和运维 / SRE 两类。</p>
+
+        <p>我担任 Sunfire 的 Design Owner 已近 4 年，全量负责平台的产品设计——从顶层信息架构到模块交互细节。</p>
+
+        <!-- Chapter 02 · 「我的」工作台 -->
+        <div class="judgment" id="chapter-2">
+          <div class="judgment-number">02</div>
+          <h2 class="judgment-title">「我的」工作台<br><span class="chapter-subtitle">关注 = 责任归属</span></h2>
+        </div>
+
+        <!-- 「我的」首页截图占位 -->
+        <figure class="work-figure work-figure-pending">
+          <div class="figure-pending">
+            <span class="pending-label">「我的」首页 · 待补充</span>
+            <span class="pending-note">关注模块 + 访问历史 + 公告</span>
+          </div>
+        </figure>
+
+        <p>「我的」首页设计核心：关注内容由用户主动声明，不依赖访问频率推断。</p>
+
+        <p>页面聚合三类信息——用户主动管理的关注资产、系统记录的访问历史、平台主动推送的公告。关注模块按"资产类型 × 用户关系"二维结构组织，告警类内容置顶。</p>
+
+        <!-- Chapter 03 · Monitor 重构 -->
+        <div class="judgment" id="chapter-3">
+          <div class="judgment-number">03</div>
+          <h2 class="judgment-title">Monitor 重构<br><span class="chapter-subtitle">复杂度的分配 · 8 步 → 5 步</span></h2>
+        </div>
+
+        <!-- 重构前后对比截图占位 -->
+        <figure class="work-figure work-figure-pending">
+          <div class="figure-pending">
+            <span class="pending-label">重构前后对比 · 待补充</span>
+            <span class="pending-note">Monitor 配置流程的变化</span>
+          </div>
+        </figure>
+
+        <p>把系统的复杂度从用户侧拿走。配置流程从 8 步缩到 5 步。</p>
+
+        <p>四个具体动作：<strong>类型收敛</strong>——多种监控类型合并为通用监控项；<strong>操作归一</strong>——多级弹窗统一到通用编辑面板；<strong>流程解耦</strong>——监控项和规则解耦，规则可独立配置和复用；<strong>页面观感</strong>——配置区域结构清晰，让用户进入页面就能看清要做什么。</p>
+
+        <!-- 通用编辑面板设计稿占位 -->
+        <figure class="work-figure work-figure-pending">
+          <div class="figure-pending">
+            <span class="pending-label">通用编辑面板 · 待补充</span>
+            <span class="pending-note">统一替代多级弹窗的配置面板</span>
+          </div>
+        </figure>
+
+        <!-- Chapter 04 · 跨模块的组件统一 -->
+        <div class="judgment" id="chapter-4">
+          <div class="judgment-number">04</div>
+          <h2 class="judgment-title">跨模块的组件统一<br><span class="chapter-subtitle">识别共性 → 专用组件</span></h2>
+        </div>
+
+        <!-- 组件本身截图占位（大图）-->
+        <figure class="work-figure work-figure-pending">
+          <div class="figure-pending">
+            <span class="pending-label">专用组件 · 待补充</span>
+            <span class="pending-note">比如：filter 组合筛选器 / 指标选择器</span>
+          </div>
+        </figure>
+
+        <p>核心判断：识别跨模块的共性，统一为专用组件。</p>
+
+        <p>平台里有些操作模式天然跨模块——查找指标、组合 filter、选择时间范围、选择应用——它们在不同模块出现时承担的是同一种交互。把这些跨模块共性识别出来，统一为这个领域的专用组件，让它们在不同模块里保持一致的样式和操作逻辑。</p>
+
+        <!-- 组件应用场景三图横排 -->
+        <figure class="work-figure work-figure-trio work-figure-pending">
+          <div class="figure-pending-trio">
+            <div class="figure-pending figure-pending-small">
+              <span class="pending-label">应用场景 1</span>
+              <span class="pending-note">Monitor 中的应用</span>
+            </div>
+            <div class="figure-pending figure-pending-small">
+              <span class="pending-label">应用场景 2</span>
+              <span class="pending-note">Trace 中的应用</span>
+            </div>
+            <div class="figure-pending figure-pending-small">
+              <span class="pending-label">应用场景 3</span>
+              <span class="pending-note">拓扑中的应用</span>
+            </div>
+          </div>
+        </figure>
+
+        <p class="aside">这些组件也支撑了跨模块的数据联动——从告警跳到对应的 Trace、从指标异常跳到拓扑节点等等，背后都依赖统一的组件 + 数据结构。</p>
+
+
+        <!-- 文末可展开的"更多模块" -->
+        <details class="more-modules">
+          <summary class="more-modules-summary">
+            <span class="more-modules-arrow">▸</span>
+            <span class="more-modules-label">展开看更多模块</span>
+          </summary>
+
+          <div class="more-modules-list">
+            <p class="more-modules-intro">
+              Sunfire 5 年里我还做过这些模块——
+            </p>
+
+            <dl class="modules-dl">
+              <dt>拓扑 <span class="module-tag">0 - 1 构建</span></dt>
+              <dd>支持多对象类型、双数据源（指标上下游 / Trace 链路），多 filter 组合查询，节点可展开详情。</dd>
+
+              <dt>Metric Explorer <span class="module-tag">0 - 1 构建</span></dt>
+              <dd>支持多 filter 组合、函数配置及跨指标计算，灵活查看指标数据。</dd>
+            </dl>
+          </div>
+        </details>
+
+        <!-- 文末文章引导 -->
+        <div class="work-article-link">
+          <p>关于这些判断背后的设计思考——</p>
+          <a href="../writing/three-judgments.html" class="article-link-pill">
+            <span class="link-arrow">→</span>
+            <span class="link-text">《复杂的 Obs 产品：三个体验设计判断》</span>
+          </a>
+        </div>
+
+      </div>
+
+
+      <!-- Byline -->
+      <div class="article-byline article-byline-end">
+        <span class="byline-author">Cherry</span>
+        <span class="byline-sep">·</span>
+        <span class="byline-date">2026 年 5 月</span>
+      </div>
+
+      <!-- Article End -->
+      <div class="article-end">
+        <span class="end-mark">·</span>
+      </div>
+
+      <!-- Prev / Next work nav -->
+      <nav class="work-nav" aria-label="作品切换">
+        <a href="sre-agent.html" class="work-nav-link work-nav-prev">
+          <span class="work-nav-direction">← 上一个作品</span>
+          <span class="work-nav-title">SRE Agent · AI 运维助手</span>
+        </a>
+        <a href="trace-for-ai.html" class="work-nav-link work-nav-next">
+          <span class="work-nav-direction">下一个作品 →</span>
+          <span class="work-nav-title">Trace for AI · AI 应用可观测性</span>
+        </a>
+      </nav>
+
+      <!-- Back -->
+      <div class="article-back">
+        <a href="../index.html#work" class="back-link">
+          <span class="back-arrow">←</span>
+          <span>返回作品集</span>
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+  <script src="../assets/nav.js"></script>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      menuOverlay.classList.add('open');
+      menuToggle.classList.add('active');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      menuOverlay.classList.remove('open');
+      menuToggle.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', () => {
+      if (menuOverlay.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', () => setTimeout(closeMenu, 100));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('open')) closeMenu();
+    });
+
+    // TOC scroll spy
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const sections = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    function updateActiveSection() {
+      const scrollPos = window.scrollY + window.innerHeight * 0.3;
+      let activeId = null;
+      sections.forEach(section => {
+        if (section.offsetTop <= scrollPos) activeId = section.id;
+      });
+      tocLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === activeId);
+      });
+    }
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    updateActiveSection();
+  </script>
+
+</body>
+</html>

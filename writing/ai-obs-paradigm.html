@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>当 AI 应用出了问题，工程师在看什么 · Cherry Ye</title>
+  <meta name="description" content="AI 应用让传统可观测工具的三个核心假设失效。方向需要从技术层往上看，切换为从语义层往下穿。">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body id="top" class="article-body" data-progress="true">
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="../index.html#top" class="nav-logo">
+        <span class="nav-logo-en">intentional<span class="accent-dot">.</span></span>
+        <span class="nav-logo-zh">充满意向的设计</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Floating menu overlay -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <span class="menu-label">导航 / Menu</span>
+
+    <div class="menu-center">
+      <div class="menu-items">
+        <a href="../index.html#top" class="menu-item">
+          <span class="menu-zh">首页</span>
+          <span class="menu-en">Home</span>
+        </a>
+        <a href="../index.html#work" class="menu-item">
+          <span class="menu-zh">作品</span>
+          <span class="menu-en">Work</span>
+        </a>
+        <a href="../index.html#writing" class="menu-item">
+          <span class="menu-zh">文章</span>
+          <span class="menu-en">Writing</span>
+        </a>
+        <a href="../index.html#about" class="menu-item">
+          <span class="menu-zh">关于</span>
+          <span class="menu-en">About</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article TOC (floating right) -->
+  <aside class="article-toc" id="articleToc" aria-label="文章导航">
+    <ul class="toc-list">
+      <li><a href="#judgment-1" class="toc-link" data-target="judgment-1"><span class="toc-num">01</span><span class="toc-text">三个失效</span></a></li>
+      <li><a href="#judgment-2" class="toc-link" data-target="judgment-2"><span class="toc-num">02</span><span class="toc-text">方向的切换</span></a></li>
+      <li><a href="#judgment-3" class="toc-link" data-target="judgment-3"><span class="toc-num">03</span><span class="toc-text">两个粒度</span></a></li>
+      <li><a href="#closing" class="toc-link" data-target="closing"><span class="toc-num">—</span><span class="toc-text">尾注</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- Article -->
+  <article class="article">
+    <div class="article-container">
+
+      <!-- Article Meta -->
+      <div class="article-meta">
+        <span class="article-category">设计判断 · Design Notes</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="article-title">
+        当 AI 应用出了问题<br>
+        <span class="article-title-sub">工程师在看什么</span>
+      </h1>
+
+      <!-- Lead paragraph -->
+      <p class="article-lead">
+        一个用户反馈，AI 客服助手给出的回答内容不对——不是接口报错，也不是响应超时，而是回答的内容本身出了问题。负责这个应用的工程师从用户反馈里拿到对话信息，再通过用户 ID 和时间窗口反查到对应的 traceId，打开 Trace 详情，看到的是一棵 Span 瀑布树，大量节点密集地排列在一起。他知道问题就藏在这棵树的某个 Span 里，但没有任何线索告诉他该从哪里开始看。
+      </p>
+
+      <!-- Body -->
+      <div class="article-body-content">
+
+        <!-- Part 1 · 三个失效 -->
+        <div class="judgment" id="judgment-1">
+          <div class="judgment-number">01</div>
+          <h2 class="judgment-title">传统可观测工具的三个失效</h2>
+        </div>
+
+        <p>传统服务的排查中，发现问题的信号和定位问题的证据用的是同一套技术语言。而在 AI 应用中，这个前提不再成立。</p>
+
+        <h3 class="sub-heading">第一步断点：从问题现象到 Trace 没有了方向</h3>
+
+        <p>传统服务里，用户报"页面打不开"，工程师有明确的入口——错误日志、慢请求列表、错误码筛选，都能直接定位到出问题的 Trace。AI 应用里用户报"回答不对"，对应的入口不存在——监控系统里没有"哪些对话回答不对"这个维度，工程师只能从对话信息反查 traceId，绕一圈才能进到 Trace。</p>
+
+        <p>本质上，监控系统像一座没有索引的图书馆——数据都在，但没有按"内容"建索引，只能按"书号"翻。</p>
+
+        <h3 class="sub-heading">第二步断点：Trace 内部的结构无法被承接</h3>
+
+        <p>AI 应用的调用结构是 ReAct 循环——多轮 iteration 反复执行直到得出最终回复。而传统应用按调用关系把它压扁成一条线性的瀑布图，相同类型的 Span 反复出现，循环结构本身在视图里消失了。工程师能看到所有节点，但感知不到"这是同一个循环在重复"。</p>
+
+        <h3 class="sub-heading">第三步断点：定位根因需要更适合的视图</h3>
+
+        <p>异常本身可能就出现在某一轮的某个 step 里，但找到根因常常需要跨轮对比。比如某一轮 iteration 出错，触发了下一轮重试，重试本身运行成功了，但最终给用户的回答仍然是错的——这种问题，工程师需要把出错的那一轮、重试的那一轮、甚至更前几轮放在一起对比，才能看清根因究竟在哪里、为什么后续看似正确的执行最终导致了不对的结果。</p>
+
+        <p>同类节点的横向对比，是 AI 应用带来的新需求，传统服务的排查里没有这种场景。</p>
+
+        <!-- Part 2 · 方向的切换 -->
+        <div class="judgment" id="judgment-2">
+          <div class="judgment-number">02</div>
+          <h2 class="judgment-title">方向的切换<br><span class="chapter-subtitle">从技术层往上看，到从语义层往下穿</span></h2>
+        </div>
+
+        <p>这三个失效指向同一件事：传统可观测性的信息组织方式不再适配 AI 应用的排查路径。</p>
+
+        <p>传统的路径是从技术层往上看——先有技术数据，工程师再去理解这些数据对应的业务含义。AI 应用的排查需要反过来：从语义层往下穿——先锚定问题现象，再向下找对应的技术证据。</p>
+
+        <p>方向变了，信息架构也要跟着重新设计。</p>
+
+        <!-- Part 3 · 两个粒度 -->
+        <div class="judgment" id="judgment-3">
+          <div class="judgment-number">03</div>
+          <h2 class="judgment-title">落到设计<br><span class="chapter-subtitle">排查路径需要两个粒度</span></h2>
+        </div>
+
+        <p>从语义层往下穿，意味着排查路径需要重新被设计。一条完整的路径需要两个粒度的入口共同支撑。</p>
+
+        <h3 class="sub-heading">Session 粒度：从问题现象定位到具体对话</h3>
+
+        <p>排查的起点是用户看到的现象，入口的形态就应该和用户看到的现象一致——是对话，不是 traceId。排查人员需要能在对话流里直接看到哪一次对话出了问题，然后从这个对话进入对应的 Trace。</p>
+
+        <p>翻译的成本应该由工具承担，不应该转嫁给用户——工具不应该要求用户先把业务语言翻译成技术语言，再到技术工具里查找。</p>
+
+        <h3 class="sub-heading">Loop 粒度：从对话穿透到具体 step</h3>
+
+        <p>进入 Trace 之后，工程师真正要做的判断在 iteration 这一层——AI 应用的核心结构是 Loop 内的 iteration 序列，轮次边界承载着所有关键判断：哪一轮的输入有问题、哪一轮的工具调用出错、哪一轮的输出偏离了预期。</p>
+
+        <p>轮次边界显性化之后，工程师可以在 iteration 之间横向对比，锁定问题发生在哪一轮，再下穿到那一轮里的具体 step。</p>
+
+        <p>两个粒度共同构成一条从用户对话穿透到具体 step 的路径。</p>
+
+        <!-- Closing -->
+        <div class="article-closing" id="closing">
+          <h2 class="closing-title">尾注</h2>
+          <p>AI 应用的可观测性是一个还在形成中的领域。多模态、多 Agent 协作、更长的推理链——这些形态会继续提出新的问题。</p>
+        </div>
+
+      </div>
+
+
+      <!-- Byline (放在文末) -->
+      <div class="article-byline article-byline-end">
+        <span class="byline-author">Cherry</span>
+        <span class="byline-sep">·</span>
+        <span class="byline-date">2026 年 6 月</span>
+      </div>
+
+      <!-- Article End -->
+      <div class="article-end">
+        <span class="end-mark">·</span>
+      </div>
+
+      <!-- Back to homepage -->
+      <div class="article-back">
+        <a href="../index.html#writing" class="back-link">
+          <span class="back-arrow">←</span>
+          <span>返回首页</span>
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+  <script src="../assets/nav.js"></script>
+  <script>
+    // Menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      menuOverlay.classList.add('open');
+      menuToggle.classList.add('active');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove('open');
+      menuToggle.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', () => {
+      if (menuOverlay.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', () => {
+        setTimeout(closeMenu, 100);
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    // Article TOC scroll spy
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const sections = ['judgment-1', 'judgment-2', 'judgment-3', 'closing']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    function updateActiveSection() {
+      // Find the section closest to (but past) the top of the viewport
+      const scrollPos = window.scrollY + window.innerHeight * 0.3;
+      let activeId = null;
+
+      sections.forEach(section => {
+        if (section.offsetTop <= scrollPos) {
+          activeId = section.id;
+        }
+      });
+
+      tocLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === activeId);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    updateActiveSection();
+  </script>
+
+</body>
+</html>

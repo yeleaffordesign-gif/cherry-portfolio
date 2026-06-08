@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SRE Agent · AI 运维助手 · Cherry Ye</title>
+  <meta name="description" content="基于可观测数据的对话式运维助手。重点设计 AI 结论与行动路径的可信表达。">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body id="top" class="article-body" data-progress="true">
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="../index.html#top" class="nav-logo">
+        <span class="nav-logo-en">intentional<span class="accent-dot">.</span></span>
+        <span class="nav-logo-zh">充满意向的设计</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Floating menu overlay -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <span class="menu-label">导航 / Menu</span>
+    <div class="menu-center">
+      <div class="menu-items">
+        <a href="../index.html#top" class="menu-item">
+          <span class="menu-zh">首页</span>
+          <span class="menu-en">Home</span>
+        </a>
+        <a href="../index.html#work" class="menu-item">
+          <span class="menu-zh">作品</span>
+          <span class="menu-en">Work</span>
+        </a>
+        <a href="../index.html#writing" class="menu-item">
+          <span class="menu-zh">文章</span>
+          <span class="menu-en">Writing</span>
+        </a>
+        <a href="../index.html#about" class="menu-item">
+          <span class="menu-zh">关于</span>
+          <span class="menu-en">About</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right side TOC -->
+  <aside class="article-toc work-toc" id="articleToc" aria-label="项目章节导航">
+    <ul class="toc-list">
+      <li><a href="#chapter-1" class="toc-link" data-target="chapter-1"><span class="toc-num">01</span><span class="toc-text">助手</span></a></li>
+      <li><a href="#chapter-2" class="toc-link" data-target="chapter-2"><span class="toc-num">02</span><span class="toc-text">结论优先</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- Article -->
+  <article class="article work-detail">
+    <div class="article-container">
+
+      <!-- Project Meta -->
+      <div class="article-meta work-meta-row">
+        <span class="article-category">AI Ops · 作品</span>
+        <span class="meta-divider">·</span>
+        <span class="meta-status">进行中</span>
+        <span class="meta-divider">·</span>
+        <span class="meta-time">2025 — 至今</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="article-title">
+        SRE Agent<br>
+        <span class="article-title-sub">AI 运维助手</span>
+      </h1>
+
+      <!-- Lead -->
+      <p class="article-lead">
+        基于可观测数据的对话式运维助手。
+      </p>
+
+      <!-- Body -->
+      <div class="article-body-content">
+
+        <!-- Chapter 01 · 助手 -->
+        <div class="judgment" id="chapter-1">
+          <div class="judgment-number">01</div>
+          <h2 class="judgment-title">助手</h2>
+        </div>
+
+        <p>SRE Agent 是一个 AI Native 产品，基于第三方可观测数据，通过对话形式支持变更检测、故障分析、应用巡检三个核心场景。</p>
+
+        <p>我从 2026 年起担任 Design Owner，负责产品的核心设计。目前基础版开发中。</p>
+
+        <!-- Chapter 02 · 结论优先 -->
+        <div class="judgment" id="chapter-2">
+          <div class="judgment-number">02</div>
+          <h2 class="judgment-title">结论优先<br><span class="chapter-subtitle">证据按需调取</span></h2>
+        </div>
+
+        <!-- 报告页截图占位 -->
+        <figure class="work-figure work-figure-pending">
+          <div class="figure-pending">
+            <span class="pending-label">分析报告页 · 待补充</span>
+            <span class="pending-note">结论 + 行动建议 + 证据链接的呈现</span>
+          </div>
+        </figure>
+
+        <p>核心判断：故障场景下结论与行动路径优先，证据按需调取。</p>
+
+        <p>做这个判断之前对比过 Dynatrace Davis 和 Datadog Bits AI——Datadog 把证据放在与结论同等重要的位置，可以直接切换查看；Dynatrace 则倾向于先给结论。</p>
+
+        <p>结合 Sunfire 的真实使用场景——故障当下用户要的是"做什么"，不是"看证据"。最终选择更接近 Dynatrace 的方式：结论 + 行动建议优先，证据以链接形式按需调取（点击跳转 trace 详情）。</p>
+
+      </div>
+
+
+      <!-- Byline -->
+      <div class="article-byline article-byline-end">
+        <span class="byline-author">Cherry</span>
+        <span class="byline-sep">·</span>
+        <span class="byline-date">2026 年 5 月</span>
+      </div>
+
+      <!-- Article End -->
+      <div class="article-end">
+        <span class="end-mark">·</span>
+      </div>
+
+      <!-- Prev / Next work nav -->
+      <nav class="work-nav" aria-label="作品切换">
+        <a href="trace-for-ai.html" class="work-nav-link work-nav-prev">
+          <span class="work-nav-direction">← 上一个作品</span>
+          <span class="work-nav-title">Trace for AI · AI 应用可观测性</span>
+        </a>
+        <a href="sunfire.html" class="work-nav-link work-nav-next">
+          <span class="work-nav-direction">下一个作品 →</span>
+          <span class="work-nav-title">Sunfire · 企业级监控平台</span>
+        </a>
+      </nav>
+
+      <!-- Back -->
+      <div class="article-back">
+        <a href="../index.html#work" class="back-link">
+          <span class="back-arrow">←</span>
+          <span>返回作品集</span>
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+  <script src="../assets/nav.js"></script>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      menuOverlay.classList.add('open');
+      menuToggle.classList.add('active');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      menuOverlay.classList.remove('open');
+      menuToggle.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', () => {
+      if (menuOverlay.classList.contains('open')) closeMenu();
+      else openMenu();
+    });
+
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', () => setTimeout(closeMenu, 100));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('open')) closeMenu();
+    });
+
+    // TOC scroll spy
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const sections = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    function updateActiveSection() {
+      const scrollPos = window.scrollY + window.innerHeight * 0.3;
+      let activeId = null;
+      sections.forEach(section => {
+        if (section.offsetTop <= scrollPos) activeId = section.id;
+      });
+      tocLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === activeId);
+      });
+    }
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    updateActiveSection();
+  </script>
+
+</body>
+</html>

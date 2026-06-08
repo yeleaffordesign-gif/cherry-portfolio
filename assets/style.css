@@ -1713,6 +1713,227 @@ body {
   .work-nav-next { text-align: left; }
 }
 
+/* === Work figure trio: 三图横排（小图组合）=== */
+.work-figure-trio {
+  margin: 32px 0 64px;
+}
+
+.figure-pending-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.figure-pending-small {
+  aspect-ratio: 4 / 3;
+  padding: 16px;
+  gap: 6px;
+}
+
+.figure-pending-small .pending-label {
+  font-size: 10px;
+}
+
+.figure-pending-small .pending-note {
+  font-size: 12px;
+}
+
+@media (max-width: 640px) {
+  .figure-pending-trio {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* === More modules expandable section === */
+.more-modules {
+  margin: 80px 0 0;
+  padding: 24px 0 0;
+  border-top: 0.5px solid var(--border);
+  max-width: 720px;
+}
+
+.more-modules-summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-secondary);
+  user-select: none;
+  transition: color 0.2s;
+  padding: 4px 0;
+}
+
+/* 去掉浏览器默认的 marker */
+.more-modules-summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-modules-summary:hover {
+  color: var(--text-primary);
+}
+
+.more-modules-arrow {
+  font-style: normal;
+  font-size: 11px;
+  color: var(--accent);
+  transition: transform 0.25s ease;
+  display: inline-block;
+}
+
+/* 展开时箭头旋转 */
+.more-modules[open] .more-modules-arrow {
+  transform: rotate(90deg);
+}
+
+/* 展开后的内容区 */
+.more-modules-list {
+  margin-top: 32px;
+  animation: fadeInDown 0.35s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.more-modules-intro {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-tertiary);
+  margin: 0 0 24px;
+}
+
+.modules-dl {
+  margin: 0;
+}
+
+.modules-dl dt {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-top: 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.modules-dl dt:first-child {
+  margin-top: 0;
+}
+
+.modules-dl dd {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 6px 0 0;
+  padding-left: 0;
+}
+
+.module-tag {
+  font-family: var(--sans, 'Inter', sans-serif);
+  font-style: normal;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 2px 8px;
+  border: 0.5px solid var(--border);
+  border-radius: 2px;
+  font-weight: 400;
+}
+
+/* === Work article link (文末引导到文章页) === */
+.work-article-link {
+  margin: 80px 0 0;
+  padding: 32px 0 0;
+  border-top: 0.5px solid var(--border);
+  max-width: 720px;
+}
+
+.work-article-link > p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+}
+
+.article-link-pill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.4;
+  transition: color 0.2s, gap 0.2s;
+  padding: 4px 0;
+  border-bottom: 0.5px solid transparent;
+}
+
+.article-link-pill:hover {
+  color: var(--accent);
+  gap: 16px;
+  border-bottom-color: var(--accent);
+}
+
+.article-link-pill .link-arrow {
+  font-size: 16px;
+  color: var(--accent);
+  font-style: normal;
+}
+
+.article-link-pill .link-text {
+  font-style: italic;
+}
+
+/* 待发布状态：不可点击的灰色变体 */
+.article-link-pill-pending {
+  cursor: default;
+  color: var(--text-tertiary);
+  border-bottom: none;
+}
+
+.article-link-pill-pending:hover {
+  color: var(--text-tertiary);
+  gap: 12px;
+  border-bottom-color: transparent;
+}
+
+.article-link-pill-pending .link-arrow {
+  color: var(--text-tertiary);
+}
+
+.pending-mark {
+  font-family: var(--sans, 'Inter', sans-serif);
+  font-style: normal;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 2px 8px;
+  border: 0.5px solid var(--border);
+  border-radius: 2px;
+  margin-left: 10px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
 /* === Article responsive === */
 @media (max-width: 720px) {
   .article { padding: 32px 0 80px; }
