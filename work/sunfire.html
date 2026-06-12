@@ -95,53 +95,67 @@
 
         <p>Sunfire 是一个企业级监控平台，与 Datadog 同类型。覆盖 Monitor、APM、指标 Explore、Trace、拓扑、日志、大盘、Event、Problems 等核心模块。</p>
 
-        <p class="aside">服务 37 个租户，近 20,000+ 应用。租户横跨业务差异极大的产品线，用户角色包含应用开发工程师和运维 / SRE 两类。</p>
+        <p class="aside">服务 37 个租户，近 20,000+ 应用。租户横跨不同业务的产品线，用户角色包含应用开发工程师和运维 / SRE 两类。</p>
 
         <p>我担任 Sunfire 的 Design Owner 已近 4 年，全量负责平台的产品设计——从顶层信息架构到模块交互细节。</p>
 
         <!-- Chapter 02 · 「我的」工作台 -->
         <div class="judgment" id="chapter-2">
           <div class="judgment-number">02</div>
-          <h2 class="judgment-title">「我的」工作台<br><span class="chapter-subtitle">关注 = 责任归属</span></h2>
+          <h2 class="judgment-title">「我的」工作台<br><span class="chapter-subtitle">关注 = 主动管理的资产 + 当下场景需要的对象</span></h2>
         </div>
 
         <!-- 「我的」首页截图占位 -->
         <figure class="work-figure work-figure-pending">
           <div class="figure-pending">
             <span class="pending-label">「我的」首页 · 待补充</span>
-            <span class="pending-note">关注模块 + 访问历史 + 公告</span>
+            <span class="pending-note">关注模块 + 最近访问 + 公告</span>
           </div>
         </figure>
 
-        <p>「我的」首页设计核心：关注内容由用户主动声明，不依赖访问频率推断。</p>
+        <p>核心判断：用户的关注内容是场景依赖的，不是一份固定清单。「我的」既要承接用户主动管理的责任资产，也要支持用户在不同场景下，快速到达当下需要看的对象。</p>
 
-        <p>页面聚合三类信息——用户主动管理的关注资产、系统记录的访问历史、平台主动推送的公告。关注模块按"资产类型 × 用户关系"二维结构组织，告警类内容置顶。</p>
+        <p>页面聚合三类信息：用户的资产管理、最近访问、平台公告。关注模块按"资产类型 × 用户关系"二维结构组织，告警类内容置顶。同时通过最近访问、收藏、快捷入口，支持场景化的快速查找。</p>
+
+        <p class="aside">更详细的判断推导见文章《复杂的 Obs 产品：三个体验设计判断》。</p>
 
         <!-- Chapter 03 · Monitor 重构 -->
         <div class="judgment" id="chapter-3">
           <div class="judgment-number">03</div>
-          <h2 class="judgment-title">Monitor 重构<br><span class="chapter-subtitle">复杂度的分配 · 8 步 → 5 步</span></h2>
+          <h2 class="judgment-title">Monitor 重构<br><span class="chapter-subtitle">类型统一 · 配置流程的简化</span></h2>
         </div>
 
-        <!-- 重构前后对比截图占位 -->
-        <figure class="work-figure work-figure-pending">
-          <div class="figure-pending">
-            <span class="pending-label">重构前后对比 · 待补充</span>
-            <span class="pending-note">Monitor 配置流程的变化</span>
-          </div>
+        <p>核心判断：Monitor 重构的首要动作是类型统一——原本多种监控项类型合并为一个「通用监控项」。统一之后，原本不同类型各自的配置流程需要被新结构承接，并在此基础上做进一步的简化。</p>
+
+        <h3 class="sub-heading">类型统一</h3>
+
+        <p>原本平台里有多种独立的监控项类型——每种都有自己的配置入口、字段、流程，用户需要先对各类监控项建立认知才能做选择。</p>
+
+        <p>新方案把这些类型合并为「通用监控项」。一个监控项里可以建任何类型的指标，也可以同时建多种类型指标。用户不再有这部分的认知负担，无需再去建立类型认知。</p>
+
+        <h3 class="sub-heading">步数缩短</h3>
+
+        <p>通用编辑面板替代了原本相同操作的重复弹窗。在此基础上，对原监控项类型里 TOP 6 的类型分别做了步数测算——旧版 11-14 步（部分步骤随配置数量重复），新方案收敛到 5-6 步。</p>
+
+        <!-- 步数对比图（无背景） -->
+        <figure class="work-figure work-figure-wide work-figure-clean">
+          <img src="../assets/images/work/monitor-steps-comparison.svg" alt="监控项创建步数对比：基于 TOP 6 高频场景，线上版本 11-14 步对比新方案 5-6 步" loading="lazy">
         </figure>
-
-        <p>把系统的复杂度从用户侧拿走。配置流程从 8 步缩到 5 步。</p>
-
-        <p>四个具体动作：<strong>类型收敛</strong>——多种监控类型合并为通用监控项；<strong>操作归一</strong>——多级弹窗统一到通用编辑面板；<strong>流程解耦</strong>——监控项和规则解耦，规则可独立配置和复用；<strong>页面观感</strong>——配置区域结构清晰，让用户进入页面就能看清要做什么。</p>
 
         <!-- 通用编辑面板设计稿占位 -->
         <figure class="work-figure work-figure-pending">
           <div class="figure-pending">
             <span class="pending-label">通用编辑面板 · 待补充</span>
-            <span class="pending-note">统一替代多级弹窗的配置面板</span>
+            <span class="pending-note">替代原本相同操作的重复弹窗</span>
           </div>
         </figure>
+
+        <h3 class="sub-heading">流程解耦</h3>
+
+        <p>原本监控项和规则是绑死的，规则只能用监控项中的指标，无法跨监控项选指标。且监控项类型在统一之前被切分得很细，规则的可配置范围就进一步被限制。</p>
+
+        <p>新方案把两者解耦：规则可以选任何监控项的指标来组合条件，组合的自由度和可能性都大幅扩大。这让规则能承接更复杂的业务场景，也支持用户配出更自定义化的预警规则。</p>
+
 
         <!-- Chapter 04 · 跨模块的组件统一 -->
         <div class="judgment" id="chapter-4">

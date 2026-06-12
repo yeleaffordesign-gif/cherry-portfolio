@@ -1626,6 +1626,15 @@ body {
     0 24px 56px rgba(26, 26, 26, 0.04);
 }
 
+/* === Work figure clean: 无阴影、无背景，融进文案的图（用于信息图、SVG 等）=== */
+.work-figure-clean {
+  margin: 32px 0;
+}
+
+.work-figure-clean img {
+  box-shadow: none;
+}
+
 /* === Figure pending (placeholder for missing image) === */
 .work-figure-pending { width: 100%; }
 
