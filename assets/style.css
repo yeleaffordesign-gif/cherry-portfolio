@@ -1648,54 +1648,20 @@ body {
   letter-spacing: 0;
 }
 
-/* === IA 章节的导航 + 菜单组合：两张独立图紧密布局，12px 间距 === */
-.ia-figure-group {
-  margin: 64px 0;
-}
-
-.ia-figure-group .work-figure {
-  margin: 0;  /* 重置默认 figure margin */
-}
-
-.ia-figure-group .work-figure + .work-figure {
-  margin-top: 12px;  /* 第二张图与上方间距 12px */
-}
-
-/* 左侧菜单图：缩到 200px 宽，让文字大小与导航条更接近 */
-.work-figure-menu img {
-  width: auto !important;
-  max-width: 200px;
-}
-
 /* === IA 章节的顶部导航弹窗组合：三个独立 figure，横向排列 === */
-.popup-stack {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  align-items: flex-end;  /* 底部对齐 */
+/* === IA 章节的 wireframe 草图：撑满版心、无阴影，黑色背景为图本身的一部分 === */
+.work-figure-wireframe {
   margin: 64px 0;
 }
 
-.popup-stack .work-figure {
-  margin: 0;
-  flex-shrink: 0;
-}
-
-/* 透明 PNG 的阴影必须用 drop-shadow（box-shadow 会按矩形 bounding box 生成，
-   在透明镂空区域形成"背景"。drop-shadow 跟随实际内容形状）*/
-.popup-stack .work-figure img {
-  width: auto !important;
+.work-figure-wireframe img {
+  width: 100%;
+  height: auto;
   display: block;
   box-shadow: none !important;
-  filter:
-    drop-shadow(0 1px 2px rgba(26, 26, 26, 0.04))
-    drop-shadow(0 8px 24px rgba(26, 26, 26, 0.06))
-    drop-shadow(0 24px 56px rgba(26, 26, 26, 0.04));
+  filter: none !important;
+  border-radius: 0;
 }
-
-.popup-stack .popup-quick img { max-width: 298px; }
-.popup-stack .popup-recent img { max-width: 238px; }
-.popup-stack .popup-fav img { max-width: 477px; }
 
 /* === Figure pending (placeholder for missing image) === */
 .work-figure-pending { width: 100%; }

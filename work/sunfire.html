@@ -106,16 +106,6 @@
           <h2 class="judgment-title">信息架构<br><span class="chapter-subtitle">三视角 · 工具层 · 顶部导航</span></h2>
         </div>
 
-        <!-- 顶部导航 + 左侧菜单（L 形布局：两张独立图，间距 12px）-->
-        <div class="ia-figure-group">
-          <figure class="work-figure">
-            <img src="../assets/images/work/sunfire-nav.png" alt="Sunfire 顶部全局导航：搜索 / 加号 / 最近 / 收藏 / 帮助 / 语言切换 / 头像" loading="lazy">
-          </figure>
-          <figure class="work-figure work-figure-menu">
-            <img src="../assets/images/work/sunfire-menu.png" alt="Sunfire 左侧菜单：三视角（我的 / 业务监控 / 应用监控）+ 工具层（观测与分析 / 大盘 / 拓扑 / Event / Trace）" loading="lazy">
-          </figure>
-        </div>
-
         <p>核心判断：信息架构从领域事实推导。</p>
 
         <p>三视角对应观测的三种基本对象——应用、业务、个人。工具层对应能力本身，不归属于任何视角。顶部导航对应跨视角、跨场景的查找与切换需求。</p>
@@ -131,18 +121,10 @@
 
         <p>顶部导航承载这一层能力——不归属于任何视角，但用户在任何场景下都可能需要：跨相关平台的菜单切换、全局搜索、常用功能、最近、收藏。这些能力收敛在顶部，让用户能跨视角、跨场景地快速到达目标。</p>
 
-        <!-- 顶部导航能力展开：快捷入口 / 最近访问 / 收藏（三个独立 figure，竖向排列） -->
-        <div class="popup-stack">
-          <figure class="work-figure popup-quick">
-            <img src="../assets/images/work/sunfire-popup-quick.png" alt="顶部「+」展开的快捷入口：创建监控项 / 接入应用 / 申请业务域权限 / 我的申请 / 批量部署健康检查 / 应用监控模版 / 自定义监控模版" loading="lazy">
-          </figure>
-          <figure class="work-figure popup-recent">
-            <img src="../assets/images/work/sunfire-popup-recent.png" alt="顶部「最近」展开的最近访问记录：列出用户最近浏览过的大盘、应用、监控项、规则等" loading="lazy">
-          </figure>
-          <figure class="work-figure popup-fav">
-            <img src="../assets/images/work/sunfire-popup-fav.png" alt="顶部「收藏」展开的收藏：按应用、大盘、监控项、预警规则分类管理用户收藏的内容" loading="lazy">
-          </figure>
-        </div>
+        <!-- IA 整体结构手绘 wireframe（5 部分：顶部导航 / 菜单（三视角+工具区）/ 收藏 / 最近访问 / 快捷入口）-->
+        <figure class="work-figure work-figure-wireframe">
+          <img src="../assets/images/work/sunfire-ia-wireframe.png" alt="Sunfire 信息架构的整体 wireframe 草图：① 顶部导航 / ② 左侧菜单（三视角 + 工具区）/ ③ 收藏 / ④ 最近访问 / ⑤ 快捷入口" loading="lazy">
+        </figure>
 
         <p class="aside">完整的研究材料、问题诊断、设计原则推导和方案设计过程，见文章《复杂的 Obs 产品：三个体验设计判断》。</p>
 
@@ -188,12 +170,9 @@
           <img src="../assets/images/work/monitor-steps-comparison.svg" alt="监控项创建步数对比：基于 TOP 6 高频场景，线上版本 11-14 步对比新方案 5-6 步" loading="lazy">
         </figure>
 
-        <!-- 通用编辑面板设计稿占位 -->
-        <figure class="work-figure work-figure-pending">
-          <div class="figure-pending">
-            <span class="pending-label">通用编辑面板 · 待补充</span>
-            <span class="pending-note">替代原本相同操作的重复弹窗</span>
-          </div>
+        <!-- 通用编辑面板 -->
+        <figure class="work-figure">
+          <img src="../assets/images/work/sunfire-monitor-edit-panel.png" alt="Monitor 通用编辑面板：左侧配置采集信息（筛选列 / 分组列 / 采样列 / 指标列等）+ 中间日志预览（线上日志拉取与列值采样）+ 右侧选取规则（划词规则 / 分割符规则 / 语法编辑规则）—— 单一面板承接原本分散在多个弹窗的配置流程" loading="lazy">
         </figure>
 
         <h3 class="sub-heading">流程解耦</h3>
