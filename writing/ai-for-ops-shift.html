@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIOps 产品演进中，体验设计能做什么 · Cherry Ye</title>
+  <meta name="description" content="当 AIOps 产品从"工具"演进到"代理"，设计师的工作重点也随之转移——不再是"信息怎么呈现给用户判断"，而是"系统的判断如何让用户信任、可控、可回溯"。">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body id="top" class="article-body" data-progress="true">
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="../index.html#top" class="nav-logo">
+        <span class="nav-logo-en">intentional<span class="accent-dot">.</span></span>
+        <span class="nav-logo-zh">充满意向的设计</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Floating menu overlay -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <span class="menu-label">导航 / Menu</span>
+
+    <div class="menu-center">
+      <div class="menu-items">
+        <a href="../index.html#top" class="menu-item">
+          <span class="menu-zh">首页</span>
+          <span class="menu-en">Home</span>
+        </a>
+        <a href="../index.html#work" class="menu-item">
+          <span class="menu-zh">作品</span>
+          <span class="menu-en">Work</span>
+        </a>
+        <a href="../index.html#writing" class="menu-item">
+          <span class="menu-zh">文章</span>
+          <span class="menu-en">Writing</span>
+        </a>
+        <a href="../index.html#about" class="menu-item">
+          <span class="menu-zh">关于</span>
+          <span class="menu-en">About</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article TOC (floating right) -->
+  <aside class="article-toc" id="articleToc" aria-label="文章导航">
+    <ul class="toc-list">
+      <li><a href="#judgment-1" class="toc-link" data-target="judgment-1"><span class="toc-num">01</span><span class="toc-text">设计信任</span></a></li>
+      <li><a href="#judgment-2" class="toc-link" data-target="judgment-2"><span class="toc-num">02</span><span class="toc-text">设计协作</span></a></li>
+      <li><a href="#judgment-3" class="toc-link" data-target="judgment-3"><span class="toc-num">03</span><span class="toc-text">持续优化</span></a></li>
+      <li><a href="#closing" class="toc-link" data-target="closing"><span class="toc-num">—</span><span class="toc-text">尾注</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- Article -->
+  <article class="article">
+    <div class="article-container">
+
+      <!-- Article Meta -->
+      <div class="article-meta">
+        <span class="article-category">设计判断 · Design Notes</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="article-title">
+        AIOps 产品演进中<br>
+        <span class="article-title-sub">体验设计能做什么</span>
+      </h1>
+
+      <!-- Lead paragraph -->
+      <p class="article-lead">
+        AI 进入工程师的世界，正在沿两条线展开。一条线是 AI 应用本身——它们也需要被观测、被排查。另一条线是 AI 进入运维——它们开始替工程师判断、行动、决策。前者是 Obs for AI，后者是 AI for Ops。
+      </p>
+
+      <!-- Body -->
+      <div class="article-body-content">
+
+        <p>这篇是后者。</p>
+
+        <p>当 AIOps 产品从"工具"演进到"代理"，用户和系统的责任分配发生了根本变化。设计师的工作重点也随之转移——不再是"信息怎么呈现给用户判断"，而是"系统的判断如何让用户信任、可控、可回溯"。</p>
+
+        <!-- Judgment 1 -->
+        <div class="judgment" id="judgment-1">
+          <div class="judgment-number">01</div>
+          <h2 class="judgment-title">从呈现信息 → 设计信任</h2>
+        </div>
+
+        <p>传统监控里，系统把数据呈现给用户，由用户做判断。AIOps 里，系统给的是判断本身。如何让用户看懂这个判断、接受这个判断、在质疑时验证这个判断——是 AIOps 产品里的新问题。</p>
+
+        <h3 class="sub-heading">结论与证据要解耦</h3>
+
+        <p>用户在不同场景下需要的信息深度不同——故障紧急时要的是"AI 说是什么 + 该做什么"，复盘审查时要的是"AI 是怎么推出来的"。强制把所有证据堆在第一屏，会让用户在紧急时找不到结论，在审查时又找不到完整推理。</p>
+
+        <p>例如，</p>
+
+        <ul class="article-list">
+          <li>故障场景：结论与行动路径优先，证据按需调取</li>
+          <li>复盘场景：证据链可深入，每一步推理可展开</li>
+        </ul>
+
+        <p>基于场景做信息层级的设计。</p>
+
+        <h3 class="sub-heading">置信度需要视觉语言</h3>
+
+        <p>AI 不是对或错，是多大概率对。但用户没有时间去看一段说明文字理解"87% 意味着什么"。置信度必须用视觉语言传达，让用户在 1 秒内判断"要不要立即信"。</p>
+
+        <p>例如，</p>
+
+        <ul class="article-list">
+          <li>高置信度 / 中置信度 / 低置信度的视觉差异要有，且要有意义——不只是颜色深浅，要传达"AI 自己有多大把握"</li>
+          <li>视觉语言的稳定性让用户建立预期——下次看到类似视觉时，能快速判断 AI 的把握程度</li>
+        </ul>
+
+        <p>这不是加一个标签，而是把"置信度"作为一类信息纳入界面的视觉系统。</p>
+
+        <h3 class="sub-heading">信任的渐进建立</h3>
+
+        <p>用户第一次用 AI 功能时默认不信任，这是合理的。设计不能假设用户从第一天就接受 AI 的判断，要预留"用户验证"的路径——让用户在初期能轻易地核对 AI、推翻 AI、重新求证。</p>
+
+        <p>例如，</p>
+
+        <ul class="article-list">
+          <li>初期：用户主导，AI 辅助。AI 给建议，但每次都由用户决策。</li>
+          <li>中期：用户在多次验证 AI 准确后，主动授权 AI 执行某类任务。</li>
+          <li>长期：用户偶尔抽查。AI 的判断已经被用户长期信任，但抽查路径仍然保留。</li>
+        </ul>
+
+        <p>设计需支撑全阶段的不同信任水平。如果有遗漏，就会遗漏掉那一部分用户的需求。</p>
+
+        <!-- Judgment 2 -->
+        <div class="judgment" id="judgment-2">
+          <div class="judgment-number">02</div>
+          <h2 class="judgment-title">从单向操作 → 双向协作</h2>
+        </div>
+
+        <p>传统监控里，用户操作系统。AIOps 里，"Agent 在操作系统"——但 AI 会犯错，且 AI 不能越权，所以让用户能"接住" AI 的工作，在合适的节点接管、修正、否决——是 AIOps 协作的核心。</p>
+
+        <h3 class="sub-heading">协作的边界要可感知</h3>
+
+        <p>AI 的能力边界一旦被定义，怎么让用户感知到这条边界？什么时候 AI 主动接管，什么时候停下来等待用户，什么时候交还控制权——这条流转的节奏是设计的对象。</p>
+
+        <p>例如，</p>
+
+        <ul class="article-list">
+          <li>让用户从界面看出"AI 在做什么"：状态、进度、阶段</li>
+          <li>让用户从界面看出"AI 已经停下"：等待用户的节点要明确</li>
+          <li>从 AI 主导到用户主导的瞬间，要有清晰的切换信号</li>
+        </ul>
+
+        <p>边界一旦不被感知，要么用户会过度信任（以为 AI 做了实际没做），要么会过度怀疑（以为 AI 没做实际做了）。</p>
+
+        <h3 class="sub-heading">在合适的节点介入</h3>
+
+        <p>AI 给了一个判断、推荐或动作之后，用户要能在合适的节点接入——接受、修正、补充信息后让 AI 重推、或者完全拒绝。这些介入节点不是 AI 流程的边角，是协作的核心。</p>
+
+        <p>例如，</p>
+
+        <ul class="article-list">
+          <li>接受：用户能一键采纳 AI 的判断进入下一步</li>
+          <li>修正：用户能改 AI 的部分输出，不只是接受/拒绝二选一</li>
+          <li>补充：用户能加额外信息让 AI 重新计算——"再看一下这个时间段"</li>
+          <li>拒绝：用户能直接否决并说明原因，不只是关闭弹窗</li>
+        </ul>
+
+        <p>让用户能介入的节点越多，AI 越能在用户的真实场景里被使用；介入的节点越少，AI 越容易被晾在那里。</p>
+
+        <h3 class="sub-heading">错误是协作的核心</h3>
+
+        <p>AI 会犯错。错误时如何处理，决定了用户对 AI 的长期态度——错误不能只是"出错了请重试"，必须让错误本身进入协作。</p>
+
+        <p>例如，</p>
+
+        <ul class="article-list">
+          <li>错误可被否决：用户拒绝 AI 的判断时，系统能收到"为什么拒绝"</li>
+          <li>错误可被纠偏：用户能告诉 AI "这个判断错在哪"——采集的是结构化的反馈信号，而不是只有"赞/踩"两种粗粒度</li>
+          <li>错误可被记录：每一次错误都能被回查，让团队知道 AI 在什么场景下表现差</li>
+        </ul>
+
+        <p>错误不被处理意味着用户不会再用。错误被处理得当，反而是 AI 与用户建立信任的最重要节点。</p>
+
+        <!-- Judgment 3 -->
+        <div class="judgment" id="judgment-3">
+          <div class="judgment-number">03</div>
+          <h2 class="judgment-title">从一次交付 → 持续优化</h2>
+        </div>
+
+        <p>传统功能上线即完成，AIOps 功能上线只是开始。</p>
+
+        <h3 class="sub-heading">反馈采集</h3>
+
+        <p>用户接受、修改、否决 AI 输出的每一个动作都是对 AI 的反馈信号。这些信号的采集机制决定了算法团队能拿到什么质量的训练数据。</p>
+
+        <p>例如，</p>
+
+        <ul class="article-list">
+          <li>隐式反馈：用户在 AI 推荐之后做了什么，采纳 / 修正 / 直接否决 / 长时间不操作</li>
+          <li>显式反馈：在恰当时机请用户评价，比如故障处理完成后，而不是排查过程中</li>
+          <li>反馈的结构化：不只是"赞 / 踩"，要让用户能说出"为什么"</li>
+        </ul>
+
+        <p>反馈采集的粒度，决定了 AI 能不能从用户使用里持续学习。</p>
+
+        <h3 class="sub-heading">可追溯性</h3>
+
+        <p>在企业级场景下，AI 触发的动作必须留下完整的审计轨迹——这是 AI 治理层面的硬要求。审计日志由系统记录，而日志如何呈现给审查者，是追溯过程的关键。</p>
+
+        <p>例如，</p>
+
+        <ul class="article-list">
+          <li>每一次 AI 触发的动作，要能从结果反查到 AI 的判断、依据、触发时间</li>
+          <li>用户的接受 / 否决 / 修改，要被作为协作行为完整记录</li>
+          <li>追溯的入口要在合适的位置——出现责任问题时，从问题界面直接进入追溯路径，无需用户去翻找入口</li>
+        </ul>
+
+        <p>追溯需要被快速调用。</p>
+
+      </div>
+
+      <!-- 尾注 -->
+      <div class="article-closing" id="closing">
+        <h2 class="closing-title">尾注</h2>
+
+        <p>这三个转变处理的问题不在同一个层面。</p>
+
+        <p>第一个转变处理的是 AI 的输出如何被用户接受——是判断的可读、可信、可验证的问题。</p>
+
+        <p>第二个转变处理的是 AI 和用户在同一任务里如何工作分配——是协作流转、介入节点、错误处理的问题。</p>
+
+        <p>第三个转变处理的是 AI 在线上的演化如何被支持——是反馈采集、行为追溯、生命周期运营的问题。</p>
+
+        <p>三个转变指向同一件事：AIOps 产品里，设计师的工作对象从"信息呈现"变成了"用户和系统的关系"。关系如何被建立、维持、修正，是新的核心问题。</p>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- Menu interaction (与作品页一致：菜单切换 + ESC + 点击空白关闭) -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function toggleMenu(open) {
+      const isOpen = typeof open === 'boolean' ? open : !menuOverlay.classList.contains('active');
+      menuOverlay.classList.toggle('active', isOpen);
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuOverlay.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    menuToggle.addEventListener('click', () => toggleMenu());
+
+    // ESC 关闭
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOverlay.classList.contains('active')) {
+        toggleMenu(false);
+      }
+    });
+
+    // 点击菜单项时关闭
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', () => toggleMenu(false));
+    });
+
+    // Scroll progress
+    const articleBody = document.body;
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(scrollTop / docHeight, 1);
+      articleBody.style.setProperty('--scroll-progress', progress);
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    // Article TOC active section
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const sections = ['judgment-1', 'judgment-2', 'judgment-3', 'closing']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    function updateActiveSection() {
+      const scrollPos = window.scrollY + window.innerHeight * 0.3;
+      let activeId = null;
+
+      sections.forEach(section => {
+        if (section.offsetTop <= scrollPos) {
+          activeId = section.id;
+        }
+      });
+
+      tocLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === activeId);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    updateActiveSection();
+  </script>
+
+</body>
+</html>

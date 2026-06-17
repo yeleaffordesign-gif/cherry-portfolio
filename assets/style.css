@@ -994,6 +994,33 @@ body {
   color: var(--text-primary);
 }
 
+/* === Article list (编辑式列表，用 "—" 作 marker，无缩进) === */
+.article-body-content ul.article-list {
+  list-style: none;
+  padding-left: 0;
+  margin: -8px 0 28px;
+  max-width: 680px;
+}
+
+.article-body-content ul.article-list > li {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-primary);
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  letter-spacing: -0.005em;
+}
+
+.article-body-content ul.article-list > li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--text-tertiary);
+}
+
 /* === Judgment headers (01 / 02 / 03) === */
 .judgment {
   margin: 88px 0 40px;
