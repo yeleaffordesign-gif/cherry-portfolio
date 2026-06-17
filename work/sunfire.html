@@ -113,7 +113,7 @@
         <p class="ia-workflow">判断 —— 基于 11 条用户访谈、JTBD 任务拆解。<br>菜单 —— 基于真实埋点数据，结合 Datadog 菜单职能与核心场景流程的对比。<br>最终推导结构 —— 顶部全局导航 + 左侧菜单（三视角 + 工具层）。</p>
 
         <!-- 菜单使用数据图 -->
-        <figure class="work-figure work-figure-clean">
+        <figure class="work-figure work-figure-clean work-figure-tinted">
           <img src="../assets/images/work/menu-usage-data.svg" alt="基于真实埋点的顶部菜单点击量：业务监控 825 / 我的 546 / 应用监控 459 / 工作台 272，揭示「我的」承担「找东西」的角色" loading="lazy">
         </figure>
 
@@ -165,14 +165,14 @@
 
         <p>通用编辑面板替代了原本相同操作的重复弹窗。在此基础上，对原监控项类型里 TOP 6 的类型分别做了步数测算——旧版 11-14 步（部分步骤随配置数量重复），新方案收敛到 5-6 步。</p>
 
-        <!-- 步数对比图（无背景） -->
-        <figure class="work-figure work-figure-wide work-figure-clean">
+        <!-- 步数对比图 -->
+        <figure class="work-figure work-figure-wide work-figure-clean work-figure-tinted">
           <img src="../assets/images/work/monitor-steps-comparison.svg" alt="监控项创建步数对比：基于 TOP 6 高频场景，线上版本 11-14 步对比新方案 5-6 步" loading="lazy">
         </figure>
 
-        <!-- 通用编辑面板 -->
-        <figure class="work-figure">
-          <img src="../assets/images/work/sunfire-monitor-edit-panel.png" alt="Monitor 通用编辑面板：左侧配置采集信息（筛选列 / 分组列 / 采样列 / 指标列等）+ 中间日志预览（线上日志拉取与列值采样）+ 右侧选取规则（划词规则 / 分割符规则 / 语法编辑规则）—— 单一面板承接原本分散在多个弹窗的配置流程" loading="lazy">
+        <!-- 监控项配置面板 -->
+        <figure class="work-figure work-figure-wide">
+          <img src="../assets/images/work/monitor-item-config.png" alt="Monitor 通用编辑面板：左侧配置采集信息（筛选列 / 分组列 / 采样列 / 指标列等）+ 中间日志预览（线上日志拉取与列值采样）+ 右侧选取规则（划词规则 / 分割符规则 / 语法编辑规则）" loading="lazy">
         </figure>
 
         <h3 class="sub-heading">流程解耦</h3>
@@ -188,38 +188,23 @@
           <h2 class="judgment-title">跨模块的组件统一<br><span class="chapter-subtitle">识别共性 → 专用组件</span></h2>
         </div>
 
-        <!-- 组件本身截图占位（大图）-->
-        <figure class="work-figure work-figure-pending">
-          <div class="figure-pending">
-            <span class="pending-label">专用组件 · 待补充</span>
-            <span class="pending-note">比如：filter 组合筛选器 / 指标选择器</span>
-          </div>
+        <!-- 组件本身截图（filter 组合筛选器）-->
+        <p style="margin-bottom: 16px; color: #999; font-size: 14px;">示例：Filters 查询</p>
+        <figure class="work-figure work-figure-wide work-figure-clean">
+          <img src="../assets/images/work/filters.png" alt="Sunfire 跨模块专用组件：filter 组合筛选器，支持多字段组合、选项联想、代码视图切换" loading="lazy">
+        </figure>
+
+        <!-- Metric Explorer 中的指标选择组件 -->
+        <p style="margin-bottom: 16px; color: #999; font-size: 14px;">示例：指标选择</p>
+        <figure class="work-figure work-figure-wide work-figure-clean" style="margin-top: 20px;">
+          <img src="../assets/images/work/metric-selector.png" alt="Metric Explorer 中的指标选择组件：跨模块统一的 filter 组合筛选器，支持多维度组合查询、即时搜索、多选" loading="lazy">
         </figure>
 
         <p>核心判断：识别跨模块的共性，统一为专用组件。</p>
 
         <p>平台里有些操作模式天然跨模块——查找指标、组合 filter、选择时间范围、选择应用——它们在不同模块出现时承担的是同一种交互。把这些跨模块共性识别出来，统一为这个领域的专用组件，让它们在不同模块里保持一致的样式和操作逻辑。</p>
 
-        <!-- 组件应用场景三图横排 -->
-        <figure class="work-figure work-figure-trio work-figure-pending">
-          <div class="figure-pending-trio">
-            <div class="figure-pending figure-pending-small">
-              <span class="pending-label">应用场景 1</span>
-              <span class="pending-note">Monitor 中的应用</span>
-            </div>
-            <div class="figure-pending figure-pending-small">
-              <span class="pending-label">应用场景 2</span>
-              <span class="pending-note">Trace 中的应用</span>
-            </div>
-            <div class="figure-pending figure-pending-small">
-              <span class="pending-label">应用场景 3</span>
-              <span class="pending-note">拓扑中的应用</span>
-            </div>
-          </div>
-        </figure>
-
         <p class="aside">这些组件也支撑了跨模块的数据联动——从告警跳到对应的 Trace、从指标异常跳到拓扑节点等等，背后都依赖统一的组件 + 数据结构。</p>
-
 
         <!-- 文末可展开的"更多模块" -->
         <details class="more-modules">
@@ -236,9 +221,20 @@
             <dl class="modules-dl">
               <dt>拓扑 <span class="module-tag">0 - 1 构建</span></dt>
               <dd>支持多对象类型、双数据源（指标上下游 / Trace 链路），多 filter 组合查询，节点可展开详情。</dd>
+              <figure class="work-figure work-figure-wide" style="margin: 24px 0 0 0;">
+                <img src="../assets/images/work/sunfire-topo.png" alt="Sunfire 拓扑模块：支持多对象类型、双数据源、多 filter 组合查询、节点展开详情" loading="lazy">
+              </figure>
 
-              <dt>Metric Explorer <span class="module-tag">0 - 1 构建</span></dt>
-              <dd>支持多 filter 组合、函数配置及跨指标计算，灵活查看指标数据。</dd>
+              <dt>Problems <span class="module-tag">0 - 1 构建</span></dt>
+              <dd>异常诊断与聚合：将同一根源的多个异常聚合为一个 Problem，支持根因分析与追踪。</dd>
+              <div style="display: grid; grid-template-columns: 0.35fr 1.2fr; gap: 20px; align-items: stretch; margin: 24px 0 0 0;">
+                <figure class="work-figure" style="margin: 0;">
+                  <img src="../assets/images/work/sunfire-dingtalk-card.png" alt="Problems 模块：钉钉卡片形式的问题通知与分析摘要" loading="lazy" style="height: 100%; object-fit: contain;">
+                </figure>
+                <figure class="work-figure" style="margin: 0;">
+                  <img src="../assets/images/work/sunfire-problem-detail.png" alt="Problems 详情页：问题分析结论、影响范围、处理流程、根因链路" loading="lazy" style="height: 100%; object-fit: contain;">
+                </figure>
+              </div>
             </dl>
           </div>
         </details>

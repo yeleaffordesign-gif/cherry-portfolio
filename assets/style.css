@@ -1662,6 +1662,12 @@ body {
   box-shadow: none;
 }
 
+/* 黑色背景图片用 multiply 混合模式，在白色页面上消除黑底 */
+.work-figure-blend img {
+  box-shadow: none;
+  mix-blend-mode: multiply;
+}
+
 /* === IA Workflow: 工作链段（带绿色左线 + 14px 灰色字）=== */
 .ia-workflow {
   font-family: var(--sans);
@@ -1688,6 +1694,17 @@ body {
   box-shadow: none !important;
   filter: none !important;
   border-radius: 0;
+}
+
+/* === Figure with tinted background (data/diagram images) === */
+.work-figure-tinted {
+  background: rgba(0, 0, 0, 0.02);
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 18px;
+}
+.work-figure-tinted img {
+  box-shadow: none !important;
 }
 
 /* === Figure pending (placeholder for missing image) === */

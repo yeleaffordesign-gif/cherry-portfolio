@@ -97,12 +97,9 @@
 
         <p class="aside">请求穿过多个服务、每个 Span 记录一段调用、工程师在瀑布图上找慢找错——这套设计在它原本的语境里是对的。但 AI 应用的数据结构和这套设计不匹配。</p>
 
-        <!-- 对比图占位 -->
-        <figure class="work-figure work-figure-pending">
-          <div class="figure-pending">
-            <span class="pending-label">对比图 · 待补充</span>
-            <span class="pending-note">传统瀑布图结构 vs AI Loop 结构</span>
-          </div>
+        <!-- 瀑布图 vs Loop 结构对比图 -->
+        <figure class="work-figure work-figure-wide work-figure-clean">
+          <img src="../assets/images/work/waterfall-vs-loop.png" alt="传统瀑布图结构 vs AI 应用的 Loop 结构对比：左侧为线性 Span 调用树，右侧为按 iteration 组织的对话与 Span 链路" loading="lazy">
         </figure>
 
         <h3 class="sub-heading">语义层与技术层之间，没有通路</h3>
@@ -177,12 +174,12 @@
 
         <h3 class="sub-heading">Conversation view</h3>
 
-        <!-- Conversation view 图占位 -->
-        <figure class="work-figure work-figure-pending">
-          <div class="figure-pending">
-            <span class="pending-label">Conversation view · 待补充</span>
-            <span class="pending-note">从对话直接定位到出问题的 trace</span>
-          </div>
+        <!-- Conversation view 图 -->
+        <figure class="work-figure work-figure-wide">
+          <img src="../assets/images/work/conversation-view.png" alt="Conversation view：对话详情面板，对话内容与 Span 链路一一对应，点击对话直达异常 trace" loading="lazy">
+          <figcaption class="figure-caption">
+            从对话直接定位到出问题的 trace，语义层与技术层打通
+          </figcaption>
         </figure>
 
         <p>从 Session 层进入排查。用户感知的对话和后台 Span 链路一一对应——点击某条对话，直接定位到对应的 trace，从语义层进入技术层。</p>
@@ -220,6 +217,11 @@
         <p>Conversation view已在 Sunfire 平台上线。Loop view 已在另一平台上线。</p>
 
         <p class="aside">这套范式的两个核心设计已经分别在不同的可观测平台落地，验证了它不依赖单一产品的实现细节——是 AI 应用排查的通用范式判断。</p>
+
+        <!-- 落地对比图 -->
+        <figure class="work-figure work-figure-wide">
+          <img src="../assets/images/work/trace-ai-landing.png" alt="Trace for AI 落地界面：AI Lens 平台中的 Loop view，Agent 执行链路按 iteration 组织，异常轮次高亮标注" loading="lazy">
+        </figure>
 
         <!-- 文末关于新范式的延展阅读 -->
         <div class="work-article-link">
