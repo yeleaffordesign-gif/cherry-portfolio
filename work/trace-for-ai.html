@@ -56,6 +56,7 @@
       <li><a href="#chapter-2" class="toc-link" data-target="chapter-2"><span class="toc-num">02</span><span class="toc-text">新范式</span></a></li>
       <li><a href="#chapter-3" class="toc-link" data-target="chapter-3"><span class="toc-num">03</span><span class="toc-text">两个 view</span></a></li>
       <li><a href="#chapter-4" class="toc-link" data-target="chapter-4"><span class="toc-num">04</span><span class="toc-text">落地</span></a></li>
+      <li><a href="#chapter-5" class="toc-link" data-target="chapter-5"><span class="toc-num">05</span><span class="toc-text">使用规模</span></a></li>
     </ul>
   </aside>
 
@@ -223,6 +224,22 @@
           <img src="../assets/images/work/trace-ai-landing.png" alt="Trace for AI 落地界面：AI Lens 平台中的 Loop view，Agent 执行链路按 iteration 组织，异常轮次高亮标注" loading="lazy">
         </figure>
 
+        <!-- Chapter 05 · 使用规模 -->
+        <div class="judgment" id="chapter-5">
+          <div class="judgment-number">05</div>
+          <h2 class="judgment-title">使用规模<br><span class="chapter-subtitle">Sunfire 内 · 近 90 天</span></h2>
+        </div>
+
+        <p>近 90 天，Trace for AI 在 Sunfire 内的使用规模为：</p>
+
+        <ul class="article-list">
+          <li>访问次数 236,517 次</li>
+          <li>独立用户 1,845</li>
+          <li>人均访问 128 次（平均不到 1 天一次）</li>
+        </ul>
+
+        <p>Trace for AI 已经成为 Sunfire 内使用强度最高的可观测能力之一——AI 应用的链路追踪需求强度在真实使用中得到验证，这一方向的产品价值不仅成立，且高于预期。</p>
+
         <!-- 文末关于新范式的延展阅读 -->
         <div class="work-article-link">
           <p>关于 AI 应用可观测的设计范式——</p>
@@ -238,8 +255,6 @@
       <!-- Byline -->
       <div class="article-byline article-byline-end">
         <span class="byline-author">Cherry</span>
-        <span class="byline-sep">·</span>
-        <span class="byline-date">2026 年 5 月</span>
       </div>
 
       <!-- Article End -->
@@ -305,7 +320,7 @@
 
     // TOC scroll spy
     const tocLinks = document.querySelectorAll('.toc-link');
-    const sections = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4']
+    const sections = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4', 'chapter-5']
       .map(id => document.getElementById(id))
       .filter(Boolean);
 

@@ -1710,6 +1710,17 @@ body {
 /* === Figure pending (placeholder for missing image) === */
 .work-figure-pending { width: 100%; }
 
+/* === Scenario matrix diagram (SVG, inline) === */
+.scenario-matrix {
+  width: 100%;
+  margin: 56px 0;
+}
+.scenario-matrix svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .figure-pending {
   width: 100%;
   aspect-ratio: 16/8;
