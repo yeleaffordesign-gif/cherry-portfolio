@@ -279,7 +279,7 @@
 
         <ul class="article-list">
           <li>同一个用户，在拓扑里习惯点选，在规则配置里却想用代码态快速复制；</li>
-          <li>不同用户，在同一个 Magic Explore 页面，有人想点选筛选、有人想直接写表达式查询。</li>
+          <li>不同用户，在同一个 Metric Explorer 页面，有人想点选筛选、有人想直接写表达式查询。</li>
         </ul>
 
         <p>形态的合适与否不是场景决定的，是用户习惯决定的。早期"按场景固定一种形态"的假设——这个场景的用户都偏好同一种输入方式——在真实使用中并不成立。</p>
@@ -289,14 +289,14 @@
         <p><strong>五个场景的形态分布</strong></p>
 
         <figure class="work-figure work-figure-wide work-figure-clean">
-          <img src="../assets/images/work/filters-five-scenarios.png" alt="Sunfire Filters 五个核心场景的形态分布：Span 查询全量提供三种形态，Magic Explore / Event / 规则配置提供代码 + 选择框，拓扑只提供选择框" loading="lazy">
+          <img src="../assets/images/work/filters-five-scenarios.png" alt="Sunfire Filters 五个核心场景的形态分布：Span 查询全量提供三种形态，Metric Explorer / Event / 规则配置提供代码 + 选择框，拓扑只提供选择框" loading="lazy">
         </figure>
 
         <p>五个核心场景的形态分布，呈现一个从全量到克制的光谱——</p>
 
         <p><strong>Span 查询是这套抽象的压力测试点。</strong>Span 是 Trace 里粒度最细的单位，一次查询可能涉及几十个过滤条件，使用频率和强度都远高于其他场景。在这种场景下，任何一类用户被排除都会导致不可用——所以 Span 必须全量提供三种形态，必须支持任意两两互转，必须把每一种形态的完成度做到最高。这是整套抽象在最高压力下的可用性证明。</p>
 
-        <p><strong>Magic Explore、规则配置、Event 提供代码 + 选择框。</strong>这些场景既有探索性查询（代码态高效），也有日常筛选（选择框低门槛）。两种形态并存、实时互转，让不同习惯的用户都能找到自己的输入方式。</p>
+        <p><strong>Metric Explorer、规则配置、Event 提供代码 + 选择框。</strong>这些场景既有探索性查询（代码态高效），也有日常筛选（选择框低门槛）。两种形态并存、实时互转，让不同习惯的用户都能找到自己的输入方式。</p>
 
         <p><strong>拓扑只提供选择框。</strong>用户在拓扑里以快速筛选为主，代码态会增加认知负担、表单则太重。提供单一形态是判断，不是省事——克制和扩展同样是设计能力。</p>
 
