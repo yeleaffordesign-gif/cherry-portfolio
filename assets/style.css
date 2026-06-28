@@ -1640,6 +1640,20 @@ body {
   border-left-color: var(--text-tertiary);
 }
 
+/* === Aside 内的文章引用链接：保持灰度，仅靠下划线提示可点击 === */
+.aside-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.5px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--text-tertiary);
+  transition: color 0.3s, text-decoration-color 0.3s;
+}
+.aside-link:hover {
+  color: var(--text-primary);
+  text-decoration-color: var(--text-secondary);
+}
+
 /* === Real screenshots inside work-figure === */
 .work-figure img {
   display: block;
