@@ -61,7 +61,7 @@
       </h1>
 
       <p class="hero-sub reveal">
-        9 年产品设计，6 年专注 B2B 可观测，<br>
+        9 年产品设计，5 年专注 B2B 可观测，<br>
         目前在 AI Obs 与 AI Ops 方向上持续探索。
       </p>
 
@@ -90,7 +90,7 @@
 
       <div class="work-list">
 
-        <a href="work/sunfire.html" class="work-item">
+        <a href="work/sunfire.html" class="work-item reveal">
           <div class="work-meta">
             <span class="work-type">企业级可观测</span>
             <span class="work-status live">已上线</span>
@@ -108,7 +108,7 @@
           <span class="work-arrow">→</span>
         </a>
 
-        <a href="work/trace-for-ai.html" class="work-item">
+        <a href="work/trace-for-ai.html" class="work-item reveal">
           <div class="work-meta">
             <span class="work-type">Obs for AI</span>
             <span class="work-status live">已上线</span>
@@ -126,7 +126,7 @@
           <span class="work-arrow">→</span>
         </a>
 
-        <a href="work/sre-agent.html" class="work-item">
+        <a href="work/sre-agent.html" class="work-item reveal">
           <div class="work-meta">
             <span class="work-type">AI for Ops</span>
             <span class="work-status">进行中</span>
@@ -170,21 +170,21 @@
 
       <div class="writing-list">
 
-        <a href="writing/three-judgments.html" class="writing-item">
+        <a href="writing/three-judgments.html" class="writing-item reveal">
           <div>
             <h3 class="writing-title">复杂的 Obs 产品：三个体验设计判断</h3>
             <p class="writing-sub">企业级工具产品的复杂度分配问题</p>
           </div>
         </a>
 
-        <a href="writing/ai-obs-paradigm.html" class="writing-item">
+        <a href="writing/ai-obs-paradigm.html" class="writing-item reveal">
           <div>
             <h3 class="writing-title">当 AI 应用出了问题，工程师在看什么</h3>
             <p class="writing-sub">AI 可观测性的设计范式转变</p>
           </div>
         </a>
 
-        <a href="writing/ai-for-ops-shift.html" class="writing-item">
+        <a href="writing/ai-for-ops-shift.html" class="writing-item reveal">
           <div>
             <h3 class="writing-title">AIOps 产品演进中，体验设计能做什么</h3>
             <p class="writing-sub">从工具到 Agent：AI for Ops 的三个体验设计重心转变</p>
@@ -290,6 +290,7 @@
       menuOverlay.classList.add('open');
       menuToggle.classList.add('active');
       menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-label', '关闭菜单');
       menuOverlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
@@ -298,6 +299,7 @@
       menuOverlay.classList.remove('open');
       menuToggle.classList.remove('active');
       menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', '打开菜单');
       menuOverlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
@@ -327,8 +329,12 @@
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('in'), i * 80);
-          obs.unobserve(entry.target);
+          const el = entry.target;
+          setTimeout(() => {
+            el.classList.add('in');
+            setTimeout(() => el.classList.remove('reveal', 'in'), 820);
+          }, i * 80);
+          obs.unobserve(el);
         }
       });
     }, { threshold: 0.1 });

@@ -123,13 +123,31 @@
 
         <p><strong>应用巡检 · AI 执行，人复核</strong></p>
 
-        <p>应用巡检是周期性任务——按既定规则定时检查应用状态、配置合规性、容量水位。单次失败成本介于前两者之间：错过一次问题不会立刻爆发，但累积起来会变成隐患。这个场景下 AI 全权执行，定期生成巡检报告。人不在每次巡检的过程中介入，而是在报告产出后做抽样复核——验证 AI 的判断标准在当前业务环境下仍然成立。</p>
+        <p>应用巡检是周期性任务——按既定规则定时检查应用状态、配置合规性、容量水位。单次失败成本介于前两者之间：错过一次问题不会立刻爆发，但累积起来会变成隐患。这个场景下 AI 全权执行，定期生成巡检报告。人不在每次巡检的过程中介入，而是在报告产出后做抽样复核——验证 AI 的判断标准在当前业务环境下仍然成立。除定期巡检外，用户也可以主动发起查询，按需拉取指定资产的当前状态与近期报警汇总。</p>
 
         <p>关键设计动作是报告结构与抽样路径：报告本身要能让用户快速识别异常项，同时支持用户对正常项进行抽查（避免 AI 形成"全部正常"的惯性偏差）。</p>
 
         <p><strong>协作边界的本质</strong></p>
 
         <p>把同一套 AI 能力按场景拆分协作边界，本质上是对"AI 在什么情况下可信、在什么情况下不可越权"的回答。这个边界一旦定义清楚，后续的界面状态、介入节点、错误处理才有依据——它们不是独立的设计决策，而是协作边界判断的下游产物。</p>
+
+        <p><strong>已落地 · 应用巡检的主动查询</strong></p>
+
+        <p>三个场景中，用户主动查询这条支线率先落地。用户以对话形式指定资产、拉取报告，AI 完成分析后产出结构化汇总；定期自动巡检的能力仍在建设中。</p>
+
+        <figure class="work-figure work-figure-wide work-figure-clean">
+          <img src="../assets/images/work/sre-agent-executing.png" alt="应用巡检执行中：用户发起查询后，AI 拉取数据的执行过程，右侧栏显示任务进度" loading="lazy">
+          <figcaption class="figure-caption">
+            用户发起查询后，AI 拉取数据、生成分析的执行过程
+          </figcaption>
+        </figure>
+
+        <figure class="work-figure work-figure-wide work-figure-clean">
+          <img src="../assets/images/work/sre-agent-report.png" alt="应用巡检报告页：AI 完成分析后的结构化输出，左侧对话流呈现模块化摘要，右侧栏聚合报警概览、高频报警 TOP3、应用健康度" loading="lazy">
+          <figcaption class="figure-caption">
+            分析报告输出，承载资产健康度、报警趋势与待关注事项
+          </figcaption>
+        </figure>
 
         <!-- Chapter 03 · 结论优先 -->
         <div class="judgment" id="chapter-3">
@@ -147,13 +165,8 @@
 
         <p>结合 Sunfire 的真实使用场景——故障发生时，用户首先想的是如何快速解决问题、避免影响扩大，而不是逐项核对证据。最终选择更接近 Dynatrace 的方式：结论 + 行动建议优先，证据以链接形式按需调取（点击跳转 trace 详情）。</p>
 
-        <!-- 分析报告页截图 -->
-        <figure class="work-figure work-figure-wide work-figure-clean">
-          <img src="../assets/images/work/sre-agent-report.png" alt="SRE Agent 分析报告页：结论与行动建议优先，证据链接按需调取，支持跳转 Trace 详情" loading="lazy">
-        </figure>
-
         <p class="aside"><strong>进行中的方向</strong><br>
-        三个场景里，故障分析的"结论优先"已落地基础版。变更检测的异常上报机制、应用巡检的报告结构与抽样路径，以及贯穿三场景的置信度视觉语言，都在持续探索中。<br>
+        三个场景里，应用巡检的主动查询已落地基础版。故障分析的"结论优先"、变更检测的异常上报机制、应用巡检的定期自动执行，以及贯穿三场景的置信度视觉语言，都在持续探索/建设中。<br>
         这些方向背后的设计原则在《AIOps 产品演进中，体验设计能做什么》一文里展开。</p>
 
       </div>

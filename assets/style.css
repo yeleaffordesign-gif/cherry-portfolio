@@ -586,6 +586,7 @@ body {
 }
 
 .writing-item:last-child { border-bottom: 0.5px solid var(--border); }
+.writing-item:hover { transform: translateY(-2px); }
 .writing-item:hover .writing-title { color: var(--text-secondary); }
 
 .writing-title {
