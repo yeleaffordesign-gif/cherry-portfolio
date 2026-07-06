@@ -520,6 +520,13 @@ body {
   color: var(--text-secondary);
 }
 
+.work-desc strong {
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: 400;
+  color: #7a7a74;
+}
+
 .work-thumb {
   width: 100%;
   aspect-ratio: 16 / 10;
