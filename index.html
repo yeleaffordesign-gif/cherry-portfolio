@@ -12,7 +12,7 @@
   <!-- Navigation -->
   <nav class="nav" id="nav">
     <div class="container nav-inner">
-      <a href="#top" class="nav-logo">
+      <a href="./" class="nav-logo" data-scroll-top>
         <span class="nav-logo-en">intentional<span class="accent-dot">.</span></span>
         <span class="nav-logo-zh">充满意向的设计</span>
       </a>
@@ -30,7 +30,7 @@
 
     <div class="menu-center">
       <div class="menu-items">
-        <a href="#top" class="menu-item">
+        <a href="./" class="menu-item" data-scroll-top>
           <span class="menu-zh">首页</span>
           <span class="menu-en">Home</span>
         </a>
@@ -310,6 +310,15 @@
       item.addEventListener('click', () => {
         // Wait a tick for the anchor navigation, then close
         setTimeout(closeMenu, 100);
+      });
+    });
+
+    // Scroll-to-top links (nav logo + Home): smooth scroll, no #top tail in URL
+    document.querySelectorAll('[data-scroll-top]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        closeMenu();
       });
     });
 
