@@ -2121,3 +2121,10 @@ body {
   .latest { flex-wrap: wrap; }
   .latest-label { border-right: none; padding-right: 0; }
 }
+
+/* 指标口径标注：区分设计测算与线上遥测 */
+.metric-note {
+  font-weight: 400;
+  opacity: 0.6;
+  font-size: 0.9em;
+}

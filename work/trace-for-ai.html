@@ -114,7 +114,7 @@
 
         <p>AI 应用是 Loop 内的多次 iteration，但传统瀑布图把轮次边界全部展平。</p>
 
-        <p class="aside">轮次之间的边界是 AI 应用调用结构最核心的边界——展平之后，工程师知道"整体慢了"，但说不出是哪一轮慢的、哪一轮出错的。</p>
+        <p class="aside">轮次之间的边界是 AI 应用调用结构最核心的边界——展平之后，工程师知道“整体慢了”，但说不出是哪一轮慢的、哪一轮出错的。</p>
 
         <!-- Chapter 02 · 判断 -->
         <div class="judgment" id="chapter-2">
@@ -122,7 +122,7 @@
           <h2 class="judgment-title">新范式<br><span class="chapter-subtitle">从语义层往下穿</span></h2>
         </div>
 
-        <p>AI 异常的第一层永远在客户端——用户反馈"答得不对"，或者从对话中能直接看出问题。排查的起点应该是这个现场。</p>
+        <p>AI 异常的第一层永远在客户端——用户反馈“答得不对”，或者从对话中能直接看出问题。排查的起点应该是这个现场。</p>
 
         <p>这是新范式的核心判断：<strong>不是从技术层往上翻，是从语义层往下穿。</strong></p>
 
@@ -208,7 +208,7 @@
           </figcaption>
         </figure>
 
-        <p class="aside">排查中的高频动作是"这一轮和基准轮的差别在哪里"——比如同样输入为何拿到错误输出。Loop view 支持把任意 iteration 钉住为基准，跟其他 iteration 逐一对比。</p>
+        <p class="aside">排查中的高频动作是“这一轮和基准轮的差别在哪里”——比如同样输入为何拿到错误输出。Loop view 支持把任意 iteration 钉住为基准，跟其他 iteration 逐一对比。</p>
 
         <!-- Chapter 04 · 现状 -->
         <div class="judgment" id="chapter-4">
@@ -216,9 +216,15 @@
           <h2 class="judgment-title">落地<br><span class="chapter-subtitle">已上线 · 跨平台</span></h2>
         </div>
 
-        <p>Conversation view 已在 Sunfire 平台上线。Loop view 先在另一平台落地，近期在 Sunfire 平台也上线。</p>
+        <p>Loop view 从设计之初就按<strong>通用组件</strong>构建——不预设宿主产品的结构，也不假设自己是 trace 详情里的唯一形态。设计时并不知道会有哪些平台使用它。</p>
 
-        <p class="aside">这套范式的核心设计已经跨可观测平台落地——Loop view 在多个平台各自独立落地，初步支持了"范式不依赖单一产品实现细节"的判断（严格的通用性还需更多异构平台验证）。这是把它作为 AI 应用排查范式的依据之一。</p>
+        <p>Loop view 先在 AI Lens 平台落地，近期在 Sunfire 也上线；Conversation view 已在 Sunfire 上线。</p>
+
+        <p><strong>两个平台里，Loop view 所处的结构位置并不相同。</strong>在 AI Lens，trace 列表点进 trace 详情，直接就是 Loop view——没有其他形态可选，这是唯一的排查路径。在 Sunfire，trace 详情提供多种视图形态，Loop view 是其中之一，用户按需切换。</p>
+
+        <p>同一个组件，一边是唯一入口、一边是可切换视图之一，在两种结构位置下都成立——iteration 独立成块、状态色编码、Steps 指示器、钉住对比这套核心，不因宿主的信息架构不同而失效。这初步支持了“Loop view 不依赖宿主产品的视图组织方式”的判断。</p>
+
+        <p class="aside">口径说明：这是<strong>同一份设计被另一个平台采用</strong>，不是另一个团队独立得出了相同范式。前者验证的是组件对宿主结构的无关性，后者才能验证范式本身的普适性——严格的通用性还需要更多异构平台验证。</p>
 
         <!-- 落地对比图 -->
         <figure class="work-figure work-figure-wide">
@@ -234,12 +240,14 @@
         <p>近 90 天，Trace for AI 在 Sunfire 内的使用规模为：</p>
 
         <ul class="article-list">
-          <li>访问次数 236,517 次</li>
+          <li>访问次数 236,517 PV</li>
           <li>独立用户 1,845</li>
           <li>人均访问 128 次（平均不到 1 天一次）</li>
         </ul>
 
-        <p>Trace for AI 已经成为 Sunfire 内使用强度最高的可观测能力之一。这组数据能证明什么，需要说清楚：高访问强度直接验证的是 AI 应用链路追踪的<strong>需求强度</strong>——这个排查方向真实成立、需求高于预期。但使用量本身不足以证明新范式的<strong>设计价值</strong>（一个急需、且当前唯一的入口，即便设计一般也会被高频使用）；范式设计是否成立，更直接的证据来自它的可迁移性——见 04 节的跨平台落地。</p>
+        <p class="aside">口径说明：这是 <strong>Trace for AI 模块的整体 PV</strong>，覆盖模块下 Span 视角、Trace 视角、Conversation 视角以及 trace 详情等全部页面，不是某一个视角的单独采纳率。</p>
+
+        <p>这组数据能证明什么，需要说清楚：高访问强度直接验证的是 AI 应用链路追踪的<strong>需求强度</strong>——这个排查方向真实成立、需求高于预期。但使用量本身不足以证明新范式的<strong>设计价值</strong>（一个急需、且当前唯一的入口，即便设计一般也会被高频使用）；范式设计是否成立，更直接的证据来自它的可迁移性——见 04 节的跨平台落地。</p>
 
         <!-- Chapter 06 · 边界与下一步 -->
         <div class="judgment" id="chapter-6">

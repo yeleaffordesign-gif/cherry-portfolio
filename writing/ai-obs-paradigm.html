@@ -93,13 +93,13 @@
 
         <h3 class="sub-heading">第一步断点：从问题现象到 Trace 没有了方向</h3>
 
-        <p>传统服务里，用户报"页面打不开"，工程师有明确的入口——错误日志、慢请求列表、错误码筛选，都能直接定位到出问题的 Trace。AI 应用里用户报"回答不对"，对应的入口不存在——监控系统里没有"哪些对话回答不对"这个维度，工程师只能从对话信息反查 traceId，绕一圈才能进到 Trace。</p>
+        <p>传统服务里，用户报“页面打不开”，工程师有明确的入口——错误日志、慢请求列表、错误码筛选，都能直接定位到出问题的 Trace。AI 应用里用户报“回答不对”，对应的入口不存在——监控系统里没有“哪些对话回答不对”这个维度，工程师只能从对话信息反查 traceId，绕一圈才能进到 Trace。</p>
 
-        <p>本质上，监控系统像一座没有索引的图书馆——数据都在，但没有按"内容"建索引，只能按"书号"翻。</p>
+        <p>本质上，监控系统像一座没有索引的图书馆——数据都在，但没有按“内容”建索引，只能按“书号”翻。</p>
 
         <h3 class="sub-heading">第二步断点：Trace 内部的结构无法被承接</h3>
 
-        <p>AI 应用的调用结构是 ReAct 循环——多轮 iteration 反复执行直到得出最终回复。而传统应用按调用关系把它压扁成一条线性的瀑布图，相同类型的 Span 反复出现，循环结构本身在视图里消失了。工程师能看到所有节点，但感知不到"这是同一个循环在重复"。</p>
+        <p>AI 应用的调用结构是 ReAct 循环——多轮 iteration 反复执行直到得出最终回复。而传统应用按调用关系把它压扁成一条线性的瀑布图，相同类型的 Span 反复出现，循环结构本身在视图里消失了。工程师能看到所有节点，但感知不到“这是同一个循环在重复”。</p>
 
         <h3 class="sub-heading">第三步断点：定位根因需要更适合的视图</h3>
 
@@ -159,6 +159,17 @@
       <div class="article-end">
         <span class="end-mark">·</span>
       </div>
+
+      <nav class="work-nav" aria-label="文章切换">
+        <a href="three-judgments.html" class="work-nav-link work-nav-prev">
+          <span class="work-nav-direction">← 上一篇</span>
+          <span class="work-nav-title">复杂的 Obs 产品：三个体验设计判断</span>
+        </a>
+        <a href="ai-for-ops-shift.html" class="work-nav-link work-nav-next">
+          <span class="work-nav-direction">下一篇 →</span>
+          <span class="work-nav-title">AIOps 产品演进中，体验设计能做什么</span>
+        </a>
+      </nav>
 
       <!-- Back to homepage -->
       <div class="article-back">
