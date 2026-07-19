@@ -934,6 +934,48 @@ body {
   max-width: 680px;
 }
 
+/* === Stage status line (work hero) === */
+.article-status-line {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-tertiary);
+  letter-spacing: 0.01em;
+  margin-top: -24px;
+  margin-bottom: 44px;
+  max-width: 680px;
+}
+.article-status-line .status-done,
+.article-status-line .status-wip {
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-right: 7px;
+}
+.article-status-line .status-done::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 7px;
+  vertical-align: middle;
+}
+.article-status-line .status-wip::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  margin-right: 7px;
+  vertical-align: middle;
+}
+.article-status-line .status-sep {
+  color: var(--border-strong);
+  margin: 0 6px;
+}
+
 /* === Byline === */
 .article-byline {
   display: flex;
