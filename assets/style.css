@@ -2167,3 +2167,96 @@ body {
   opacity: 0.6;
   font-size: 0.9em;
 }
+
+/* ============================================================
+   Lightbox · 点击放大（全站作品图 .work-figure img）
+   追加于文末，不改动既有规则
+   ============================================================ */
+.work-figure img { cursor: zoom-in; }
+
+.lb-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vh 3vw;
+  box-sizing: border-box;
+  background: rgba(15, 16, 20, 0.92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+  cursor: zoom-out;
+}
+.lb-overlay.is-open { opacity: 1; visibility: visible; }
+
+.lb-stage {
+  max-width: 94vw;
+  max-height: 90vh;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-overflow-scrolling: touch;
+}
+.lb-overlay img {
+  display: block;
+  max-width: 94vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  cursor: zoom-in;              /* 可再点放到原始尺寸 */
+}
+.lb-overlay.is-actual .lb-stage { align-items: flex-start; justify-content: flex-start; }
+.lb-overlay.is-actual img {
+  max-width: none;
+  max-height: none;
+  cursor: zoom-out;            /* 点回到适应视口 */
+}
+/* SVG 仅有 viewBox、无固有宽高：给定宽度，避免在 lightbox 里 width:auto 塌成空白（矢量放大无损）*/
+.lb-overlay img[src$=".svg"] { width: 94vw; height: auto; }
+.lb-overlay.is-actual img[src$=".svg"] { width: 94vw; }
+
+.lb-caption {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  pointer-events: none;
+}
+.lb-hint {
+  position: fixed;
+  top: 18px; left: 20px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+.lb-close {
+  position: fixed;
+  top: 14px; right: 18px;
+  width: 40px; height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.lb-close:hover { background: rgba(255, 255, 255, 0.24); }
+
+body.lb-lock { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lb-overlay { transition: none; }
+}
