@@ -58,6 +58,7 @@
       <li><a href="#chapter-4" class="toc-link" data-target="chapter-4"><span class="toc-num">04</span><span class="toc-text">Monitor 重构</span></a></li>
       <li><a href="#chapter-5" class="toc-link" data-target="chapter-5"><span class="toc-num">05</span><span class="toc-text">组件统一</span></a></li>
       <li><a href="#chapter-6" class="toc-link" data-target="chapter-6"><span class="toc-num">延伸</span><span class="toc-text">Filters</span></a></li>
+      <li><a href="#chapter-7" class="toc-link" data-target="chapter-7"><span class="toc-num">06</span><span class="toc-text">Problem</span></a></li>
     </ul>
   </aside>
 
@@ -118,7 +119,7 @@
           <img src="../assets/images/work/menu-usage-data.svg" alt="基于真实埋点的顶部菜单点击量：业务监控 825 / 我的 546 / 应用监控 459 / 工作台 272，揭示「我的」承担「找东西」的角色" loading="lazy">
         </figure>
 
-        <p>研究中的一个关键发现：「我的」承载的不是“个性化推荐”，而是用户“找东西”的需求——关注内容是场景依赖的，不是一份固定清单。这个发现重新定义了「我的」视角的功能边界——同时也让原本独立的「工作台」菜单不再需要存在，相关能力收敛进「我的」（详见下一章）。</p>
+        <p>「我的」承载的不是“个性化推荐”，而是用户“找东西”的需求——关注内容是场景依赖的，不是一份固定清单。这一判断重新定义了「我的」视角的功能边界——同时也让原本独立的「工作台」菜单不再需要存在，相关能力收敛进「我的」（详见下一章）。</p>
 
         <p>顶部导航不归属于任何视角，但用户在任何场景下都可能需要：跨相关平台的菜单切换、全局搜索、常用功能、最近、收藏。这些能力收敛在顶部，让用户能跨视角、跨场景地快速到达目标。</p>
 
@@ -269,7 +270,7 @@
 
         <p><strong>Metric Explorer、规则配置、Event 提供代码 + 选择框。</strong>这些场景既有探索性查询（代码态高效），也有日常筛选（选择框低门槛）。两种形态并存、实时互转，让不同习惯的用户都能找到自己的输入方式。</p>
 
-        <p><strong>拓扑只提供选择框。</strong>用户在拓扑里以快速筛选为主，代码态会增加认知负担、表单则太重。提供单一形态是判断，不是省事——克制和扩展同样是设计能力。</p>
+        <p><strong>拓扑只提供选择框。</strong>用户在拓扑里以快速筛选为主，代码态会增加认知负担、表单则太重。</p>
 
         <p><strong>历史记录 · 承接用户的近期关注</strong></p>
 
@@ -280,6 +281,55 @@
         <p><strong>收束</strong></p>
 
         <p>这套抽象的本质——输入方式是用户的习惯、复用模式是用户的近期关注，都不属于场景；场景只决定开放多少种形态。它带来的结果是：用户协作不会产生认知断层——一份 Filters 表达在任何场景里都能被理解、被复用；新场景接入时，只需回答“开放哪些形态、提供怎样的复用机制”，而不再是“该用哪种 filter”。</p>
+
+        <!-- Chapter 06 · Problem · 告警排查 -->
+        <div class="judgment" id="chapter-7">
+          <div class="judgment-number">06</div>
+          <h2 class="judgment-title">Problem · 告警排查<br><span class="chapter-subtitle">多终端联动 —— 钉钉触达，平台排查</span></h2>
+        </div>
+
+        <p>Problem 把同一根源的多个异常事件聚合成一个 Problem。排查因此有了一个完整的单元：不用去追一堆分散的异常，面对的是一个 Problem——这是报警排查的起点。</p>
+
+        <p>一条 Problem 会走完一条链路：问题发生 → 产生报警 → 触达用户 → 排查根因 → 解决问题。这一章不讲整条链，只讲中间两个节点的分工与承接：用户「被触达」，和用户「主动排查」。前者要把告警送到该看的人面前，后者要让人从「被告知」接上「去查清」。这两个节点分别落在两个触点上——钉钉卡片，和平台详情页。</p>
+
+        <p><strong>钉钉卡片 · 触达相关的人，支撑一个初步判断：这条 Problem 跟我什么关系</strong></p>
+
+        <p>报警要的是第一时间、马上触达，而用户此刻是被动接收的。把 Problem 作为钉钉工作消息推送，正是最容易让人当场被触达到的形式。</p>
+
+        <p>一条 Problem 触达的往往不是一个人，是一群角色不同的人。因为一个 Problem 由同一根源引发的多个异常聚合而成，往往横跨多个监控项与实体，背后订阅、关注的人分属不同角色。对这群人，同一张卡片要跨过两重差异：被触达时的处境不同（有人在电脑前，有人在休息或外出），这个 Problem 对不同角色的意味也不同——该重视到什么程度、下一步做什么、有多紧急，都不一样。所以卡片得在第一时间给出足够的基本信息，让每个人初步判断：这条 Problem 跟我什么关系、要不要现在就动。</p>
+
+        <p>这是卡片上需要放影响面、分析结论、因果链这三样的原因——它们是判断的依据。但都只给到够做初步判断的程度：影响面只列 Top5、分析只给结论、因果链收进一个 tab。</p>
+
+        <p>卡片也跟着 Problem 的状态走：Open 态有一个待决的动作——接手，恢复后它就没了意义，连同值班、影响面这些为处置服务的信息一起收起，只补上恢复时间与「指标已回落到正常水平」、留一个查看详情。卡上放什么，取决于此刻还有没有要处理的问题。</p>
+
+        <figure class="work-figure" style="max-width: 640px; margin: 40px auto;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;">
+            <div>
+              <img src="../assets/images/work/sunfire-problem-card-open.png" alt="Problem 钉钉告警卡片 · Open 态：问题摘要、影响面 Top5、AI 失火点分析、因果链，以及接手 / 值班 / 查看详情入口" loading="lazy">
+              <div class="figure-caption">Open 态 · 有待处置的动作</div>
+            </div>
+            <div>
+              <img src="../assets/images/work/sunfire-problem-card-recovered.png" alt="Problem 钉钉告警卡片 · 恢复态：处置类入口收起，补上恢复时间与「指标已回落到正常水平」，只留查看详情" loading="lazy">
+              <div class="figure-caption">恢复态 · 动作消解，卡片收敛</div>
+            </div>
+          </div>
+        </figure>
+
+        <p><strong>平台详情页 · 排查：查清根因</strong></p>
+
+        <p>排查是顺着结论往源头追的过程。所以详情页不止把信息给全，更把它按这条追查路径组织起来——从结论，到影响面，到一环环的因果链，直到异常源头。信息的完整是排查的前提，而排查的效率，取决于它是否按「人怎么往下查」来组织。</p>
+
+        <figure class="work-figure work-figure-wide">
+          <img src="../assets/images/work/sunfire-problem-detail.png" alt="Problem 平台详情页：影响面全量按维度分类、每条带报警数量，报警事件完整记录，因果链展开为 SQL 语法错误 → 接口响应超时 → ExecutionException 调用链异常传播，标出异常源点 us-east-1" loading="lazy">
+        </figure>
+
+        <p><strong>衔接 · 触点切换，上下文不断</strong></p>
+
+        <p>触达到排查，触点换了、端也换了，但用户手里那条线索不能断。所以卡片跳转直达这条 Problem 的详情页，而不是把人丢回 Problem 列表、让他再找一遍。</p>
+
+        <p><strong>收束</strong></p>
+
+        <p>多端联动不是响应式排版，至少在这个功能场景下不是。放什么信息或动作、选择什么触点，都由这个节点的职能决定；信息层次的传达和展示方式，也由这个节点承担的任务、以及触点的能力（它是个怎样的容器、它表达的限度）来决定。</p>
 
         <!-- 文末可展开的"更多模块" -->
         <details class="more-modules">
@@ -299,17 +349,6 @@
               <figure class="work-figure work-figure-wide" style="margin: 24px 0 0 0;">
                 <img src="../assets/images/work/sunfire-topo.png" alt="Sunfire 拓扑模块：支持多对象类型、双数据源、多 filter 组合查询、节点展开详情" loading="lazy">
               </figure>
-
-              <dt>Problems <span class="module-tag">0 - 1 构建</span></dt>
-              <dd>异常诊断与聚合：将同一根源的多个异常聚合为一个 Problem，支持根因分析与追踪。</dd>
-              <div style="display: grid; grid-template-columns: 0.35fr 1.2fr; gap: 20px; align-items: stretch; margin: 24px 0 0 0;">
-                <figure class="work-figure" style="margin: 0;">
-                  <img src="../assets/images/work/sunfire-dingtalk-card.png" alt="Problems 模块：钉钉卡片形式的问题通知与分析摘要" loading="lazy" style="height: 100%; object-fit: contain;">
-                </figure>
-                <figure class="work-figure" style="margin: 0;">
-                  <img src="../assets/images/work/sunfire-problem-detail.png" alt="Problems 详情页：问题分析结论、影响范围、处理流程、根因链路" loading="lazy" style="height: 100%; object-fit: contain;">
-                </figure>
-              </div>
             </dl>
           </div>
         </details>
@@ -394,8 +433,8 @@
 
     // TOC scroll spy
     const tocLinks = document.querySelectorAll('.toc-link');
-    const sections = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4', 'chapter-5', 'chapter-6']
-      .map(id => document.getElementById(id))
+    const sections = Array.from(tocLinks)
+      .map(link => document.getElementById(link.dataset.target))
       .filter(Boolean);
 
     function updateActiveSection() {

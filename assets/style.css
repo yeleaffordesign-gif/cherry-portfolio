@@ -2260,3 +2260,25 @@ body.lb-lock { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .lb-overlay { transition: none; }
 }
+
+/* === 数据大屏（上下全宽，图可点开放大） === */
+#more-work { border-top: 0; }
+.bigscreen-figure { margin: 0; }
+.bigscreen-figure img {
+  border-radius: 6px;
+  border: 0.5px solid var(--border);
+}
+.bigscreen-cap { max-width: 700px; margin-top: 28px; }
+.bigscreen-cap .cap-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+.bigscreen-cap .cap-desc {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
