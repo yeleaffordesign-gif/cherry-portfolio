@@ -19,7 +19,7 @@
             </text>
             <line x1="2.55871713e-14" y1="24.5" x2="125" y2="24.5" id="直线备份" stroke="#EDEDEA" stroke-linecap="square"></line>
         </g>
-        <g id="编组-6备份-3" transform="translate(20.000000, 335.000000)">
+        <g id="编组-6备份-3" transform="translate(20.000000, 284.000000)">
             <text id="教育与认证-/-Education" font-family="PingFangSC-Regular, PingFang SC" font-size="8" font-weight="normal" fill="#999999">
                 <tspan x="0" y="8">教育与认证 / Education</tspan>
             </text>
@@ -108,11 +108,11 @@
             </text>
         </g>
         <text id="浙江科技学院-·-视觉传达设计-·-20" font-family="PingFangSC-Regular, PingFang SC" font-size="8" font-weight="normal" fill="#666666">
-            <tspan x="20" y="390">浙江科技学院 · 视觉传达设计 · 2016</tspan>
+            <tspan x="20" y="339">浙江科技学院 · 视觉传达设计 · 2016</tspan>
         </text>
         <text id="Apple-Authorized-Tra" font-family="PingFangSC-Regular, PingFang SC" font-size="8" font-weight="normal" fill="#666666">
-            <tspan x="20" y="411">Apple Authorized Training · Innovation </tspan>
-            <tspan x="20" y="422">&amp; PM · 2021</tspan>
+            <tspan x="20" y="360">Apple Authorized Training · Innovation </tspan>
+            <tspan x="20" y="371">&amp; PM · 2021</tspan>
         </text>
         <g id="编组-8" transform="translate(20.000000, 735.000000)" font-family="PingFangSC-Regular, PingFang SC" font-size="8" font-weight="normal">
             <text id="cherryye5663@163.com" fill="#666666">
@@ -137,15 +137,6 @@
             </text>
             <text id="信息架构-·-设计策略-·-Agenti" font-size="8" fill="#666666">
                 <tspan x="0" y="28">信息架构 · 设计策略 · Agentic UX</tspan>
-            </text>
-        </g>
-        <g id="编组-7备份-2" transform="translate(20.000000, 220.000000)" font-family="PingFangSC-Regular, PingFang SC" font-weight="normal">
-            <text id="AI-工作流" font-size="10" fill="#333333">
-                <tspan x="0" y="11">AI 工作流</tspan>
-            </text>
-            <text id="研究加速-·-方案参考生成-·-设计评审" font-size="8" fill="#666666">
-                <tspan x="0" y="28">研究加速 · 方案参考生成 · </tspan>
-                <tspan x="0" y="39">设计评审辅助 · Design Token 结构化</tspan>
             </text>
         </g>
         <a xlink:href="https://yeleaffordesign-gif.github.io/cherry-portfolio/writing/three-judgments.html" target="_blank"><text id="—-复杂的-Obs-产品：三个体验设计判" font-family="PingFangSC-Regular, PingFang SC" font-size="8" font-weight="normal" fill="#666666">
