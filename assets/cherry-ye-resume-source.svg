@@ -50,8 +50,8 @@
         <g id="编组-3" transform="translate(211.000000, 295.000000)">
             <text id="Sunfire-·-企业级监控平台-·" font-family="PingFangSC-Regular, PingFang SC" font-size="8" font-weight="normal" fill="#666666">
                 <tspan x="10" y="8">Sunfire · 企业级监控平台 · 2022 — 至今 / 已上线</tspan>
-                <tspan x="10" y="19">37 租户、20,000+ 应用，覆盖 Monitor、APM、Trace、指标、日志、拓扑等核心模块。独立承担</tspan>
-                <tspan x="10" y="30">全量设计，从顶层信息架构到模块交互细节；12 种监控项类型收敛为 1 个通用入口。</tspan>
+                <tspan x="10" y="19">37 租户、20,000+ 应用，覆盖 Monitor、APM、Trace、指标、日志、拓扑等核心模块。端到端独立</tspan>
+                <tspan x="10" y="30">负责设计，从顶层信息架构到模块交互细节；12 种监控项类型收敛为 1 个通用入口。</tspan>
             </text>
             <rect id="矩形" fill="#E7E7E2" x="0" y="0" width="2" height="33"></rect>
         </g>
